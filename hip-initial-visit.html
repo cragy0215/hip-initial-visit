@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/Users/cragy/Downloads/hip_initial_visit.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>고관절 초진 문진 — 이화 Hip &amp; Performance Center</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+
+:root {
+  --navy: #1a3a5c;
+  --navy-light: #2a5280;
+  --teal: #1a7a6e;
+  --teal-light: #e8f5f3;
+  --orange: #e8762c;
+  --cream: #f8f6f1;
+  --cream2: #f0ede6;
+  --border: #ddd8cf;
+  --text: #1c1c1c;
+  --muted: #6b6560;
+  --white: #ffffff;
+  --error: #c0392b;
+  --success: #27ae60;
+  --shadow: 0 2px 12px rgba(26,58,92,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 20px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.header-icon {
+  width: 38px;
+  height: 38px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.header-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 300;
+}
+.progress-bar-wrap {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+  height: 4px;
+  overflow: hidden;
+}
+.progress-bar {
+  background: var(--orange);
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.progress-text {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 16px 16px 80px;
+}
+
+/* ===== SECTION CARD ===== */
+.section-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.section-header {
+  background: var(--navy);
+  color: white;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-header .icon { font-size: 18px; }
+.section-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.section-header .badge {
+  margin-left: auto;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.section-body { padding: 16px 18px; }
+
+/* ===== FORM ELEMENTS ===== */
+.field-group { margin-bottom: 16px; }
+.field-group:last-child { margin-bottom: 0; }
+
+label.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+label.field-label .req {
+  color: var(--orange);
+  margin-left: 2px;
+}
+label.field-label .hint {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 11px;
+  margin-left: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 13px;
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--text);
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(26,122,110,0.12);
+}
+textarea { resize: vertical; min-height: 80px; }
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* Row layouts */
+.field-row {
+  display: grid;
+  gap: 12px;
+}
+.field-row.col2 { grid-template-columns: 1fr 1fr; }
+.field-row.col3 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* Radio / Checkbox groups */
+.radio-group, .check-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+.radio-group.vertical, .check-group.vertical {
+  flex-direction: column;
+  gap: 6px;
+}
+.radio-btn, .check-btn {
+  position: relative;
+}
+.radio-btn input, .check-btn input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.radio-btn label, .check-btn label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  background: white;
+  user-select: none;
+}
+.radio-btn label:before, .check-btn label:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.check-btn label:before { border-radius: 4px; }
+.radio-btn input:checked + label,
+.check-btn input:checked + label {
+  border-color: var(--teal);
+  background: var(--teal-light);
+  color: var(--teal);
+  font-weight: 600;
+}
+.radio-btn input:checked + label:before,
+.check-btn input:checked + label:before {
+  background: var(--teal);
+  border-color: var(--teal);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Pain scale */
+.pain-scale-wrap { margin-top: 4px; }
+.pain-scale {
+  display: flex;
+  gap: 5px;
+  flex-wrap: nowrap;
+}
+.pain-scale .ps-btn {
+  position: relative;
+  flex: 1;
+}
+.pain-scale .ps-btn input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.pain-scale .ps-btn label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--muted);
+}
+.pain-scale .ps-btn:nth-child(1) label { background: #ecfdf5; border-color: #a7f3d0; color: #059669; }
+.pain-scale .ps-btn:nth-child(2) label { background: #f0fdf4; border-color: #bbf7d0; color: #16a34a; }
+.pain-scale .ps-btn:nth-child(3) label { background: #fefce8; border-color: #fde68a; color: #d97706; }
+.pain-scale .ps-btn:nth-child(4) label { background: #fff7ed; border-color: #fed7aa; color: #ea580c; }
+.pain-scale .ps-btn:nth-child(5) label { background: #fef2f2; border-color: #fecaca; color: #dc2626; }
+.pain-scale .ps-btn input:checked + label {
+  transform: scale(1.08);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  z-index: 2;
+  position: relative;
+}
+.pain-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 5px;
+  padding: 0 2px;
+}
+
+/* Body location selector */
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 4px;
+}
+.loc-btn {
+  position: relative;
+}
+.loc-btn input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.loc-btn label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 6px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+  background: white;
+  min-height: 60px;
+}
+.loc-btn label .emoji { font-size: 20px; }
+.loc-btn input:checked + label {
+  border-color: var(--orange);
+  background: #fff5ee;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--cream2);
+  margin: 16px 0;
+}
+
+/* Info box */
+.info-box {
+  background: var(--teal-light);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+
+/* Conditional section */
+.conditional-section {
+  display: none;
+  animation: slideDown 0.3s ease;
+}
+.conditional-section.visible { display: block; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-wrap {
+  padding: 20px 18px;
+  background: white;
+  border-top: 1px solid var(--cream2);
+}
+.btn-submit {
+  width: 100%;
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.5px;
+}
+.btn-submit:active { transform: scale(0.98); background: var(--navy-light); }
+
+/* ===== RESULT PAGE ===== */
+.result-page {
+  display: none;
+  padding: 20px 16px 80px;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.result-page.visible { display: block; }
+.result-hero {
+  background: var(--navy);
+  color: white;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.result-hero .check-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(39,174,96,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 12px;
+}
+.result-hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.result-hero p { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+.copy-section { margin-bottom: 16px; }
+.copy-section h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.copy-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.copy-tab {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.copy-tab.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+.copy-preview {
+  background: #1c1c1c;
+  border-radius: 10px;
+  padding: 16px;
+  font-family: 'Noto Sans KR', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #e8e8e8;
+  white-space: pre-wrap;
+  max-height: 320px;
+  overflow-y: auto;
+  position: relative;
+}
+.copy-preview .highlight { color: #7dd3fc; }
+.copy-preview .value { color: #86efac; }
+.copy-preview .section-label { color: #fbbf24; font-weight: 600; }
+
+.btn-copy {
+  width: 100%;
+  margin-top: 10px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-copy:active { transform: scale(0.98); }
+.btn-copy.copied { background: var(--success); }
+
+.btn-restart {
+  width: 100%;
+  margin-top: 12px;
+  background: white;
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-restart:active { background: var(--cream2); }
+
+/* Form page */
+#form-page { display: block; }
+</style>
+</head>
+<body>
+
+<div id="form-page">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-icon">🦴</div>
+      <div>
+        <h1>고관절 초진 문진</h1>
+        <div class="header-sub">Ewha Hip &amp; Performance Center</div>
+      </div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-text" id="progressText">0% 완료</div>
+  </div>
+
+  <div class="container">
+
+    <!-- 1. 기본 정보 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="icon">👤</span>
+        <h2>기본 정보</h2>
+        <span class="badge">Section 1</span>
+      </div>
+      <div class="section-body">
+        <div class="field-row col2">
+          <div class="field-group">
+            <label class="field-label">성함 <span class="req">*</span></label>
+            <input type="text" id="pt_name" placeholder="홍길동">
+          </div>
+          <div class="field-group">
+            <label class="field-label">생년월일 <span class="req">*</span></label>
+            <input type="date" id="pt_dob">
+          </div>
+        </div>
+        <div class="field-row col2">
+          <div class="field-group">
+            <label class="field-label">성별</label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="sex" id="sex_m" value="남"><label for="sex_m">남성</label></div>
+              <div class="radio-btn"><input type="radio" name="sex" id="sex_f" value="여"><label for="sex_f">여성</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">연락처</label>
+            <input type="tel" id="pt_tel" placeholder="010-0000-0000">
+          </div>
+        </div>
+        <div class="field-row col3">
+          <div class="field-group">
+            <label class="field-label">키 (cm)</label>
+            <input type="number" id="pt_height" placeholder="170">
+          </div>
+          <div class="field-group">
+            <label class="field-label">체중 (kg)</label>
+            <input type="number" id="pt_weight" placeholder="65">
+          </div>
+          <div class="field-group">
+            <label class="field-label">직업</label>
+            <input type="text" id="pt_job" placeholder="직업">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 주 호소 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="icon">🎯</span>
+        <h2>주 호소 (Chief Complaint)</h2>
+        <span class="badge">Section 2</span>
+      </div>
+      <div class="section-body">
+        <div class="field-group">
+          <label class="field-label">증상이 어느 쪽에 있나요? <span class="req">*</span></label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="side" id="side_l" value="좌측"><label for="side_l">좌측 (Left)</label></div>
+            <div class="radio-btn"><input type="radio" name="side" id="side_r" value="우측"><label for="side_r">우측 (Right)</label></div>
+            <div class="radio-btn"><input type="radio" name="side" id="side_b" value="양측"><label for="side_b">양측 (Bilateral)</label></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">통증/불편함의 위치 <span class="req">*</span> <span class="hint">여러 곳 선택 가능</span></label>
+          <div class="location-grid">
+            <div class="loc-btn"><input type="checkbox" id="loc_groin" name="location" value="서혜부(사타구니)"><label for="loc_groin"><span class="emoji">🔵</span>서혜부<br>(사타구니)</label></div>
+            <div class="loc-btn"><input type="checkbox" id="loc_lateral" name="location" value="고관절 외측"><label for="loc_lateral"><span class="emoji">🔵</span>고관절<br>외측</label></div>
+            <div class="loc-btn"><input type="checkbox" id="loc_posterior" name="location" value="엉덩이/후방"><label for="loc_posterior"><span class="emoji">🔵</span>엉덩이<br>(후방)</label></div>
+            <div class="loc-btn"><input type="checkbox" id="loc_deep" name="location" value="엉덩이 깊은 곳"><label for="loc_deep"><span class="emoji">🟠</span>엉덩이<br>깊은 곳</label></div>
+            <div class="loc-btn"><input type="checkbox" id="loc_thigh" name="location" value="허벅지"><label for="loc_thigh"><span class="emoji">🔵</span>허벅지</label></div>
+            <div class="loc-btn"><input type="checkbox" id="loc_back" name="location" value="허리/천골부"><label for="loc_back"><span class="emoji">🔵</span>허리/<br>천골부</label></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">증상 시작 시기</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="onset" id="on1" value="1개월 미만"><label for="on1">1개월 미만</label></div>
+            <div class="radio-btn"><input type="radio" name="onset" id="on2" value="1–3개월"><label for="on2">1–3개월</label></div>
+            <div class="radio-btn"><input type="radio" name="onset" id="on3" value="3–12개월"><label for="on3">3–12개월</label></div>
+            <div class="radio-btn"><input type="radio" name="onset" id="on4" value="1년 이상"><label for="on4">1년 이상</label></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">증상 발생 계기</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="cause" id="ca1" value="외상/낙상"><label for="ca1">외상/낙상</label></div>
+            <div class="radio-btn"><input type="radio" name="cause" id="ca2" value="운동 중 부상"><label for="ca2">운동 중 부상</label></div>
+            <div class="radio-btn"><input type="radio" name="cause" id="ca3" value="점진적으로 발생"><label for="ca3">서서히 발생</label></div>
+            <div class="radio-btn"><input type="radio" name="cause" id="ca4" value="모름/원인불명"><label for="ca4">모름</label></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">증상의 성격 <span class="hint">해당하는 것 모두</span></label>
+          <div class="check-group">
+            <div class="check-btn"><input type="checkbox" id="char1" name="char" value="둔한 통증"><label for="char1">둔한 통증</label></div>
+            <div class="check-btn"><input type="checkbox" id="char2" name="char" value="날카로운 통증"><label for="char2">날카로운 통증</label></div>
+            <div class="check-btn"><input type="checkbox" id="char3" name="char" value="타는 듯한 통증"><label for="char3">타는 듯한 느낌</label></div>
+            <div class="check-btn"><input type="checkbox" id="char4" name="char" value="전기 오는 느낌"><label for="char4">전기 오는 느낌</label></div>
+            <div class="check-btn"><input type="checkbox" id="char5" name="char" value="뻣뻣함(강직)"><label for="char5">뻣뻣함</label></div>
+            <div class="check-btn"><input type="checkbox" id="char6" name="char" value="소리 남(클릭/팝)"><label for="char6">소리 남 (클릭/팝)</label></div>
+            <div class="check-btn"><input type="checkbox" id="char7" name="char" value="불안정한 느낌"><label for="char7">불안정한 느낌</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 통증 강도 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="icon">📊</span>
+        <h2>통증 강도 (NRS)</h2>
+        <span class="badge">Section 3</span>
+      </div>
+      <div class="section-body">
+        <div class="field-group">
+          <label class="field-label">현재 통증 강도 <span class="req">*</span></label>
+          <div class="pain-scale-wrap">
+            <div class="pain-scale">
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="nrs_now_0" value="0"><label for="nrs_now_0">0<br><small>없음</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="nrs_now_2" value="1–2"><label for="nrs_now_2">1–2<br><small>약함</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="nrs_now_5" value="3–5"><label for="nrs_now_5">3–5<br><small>중간</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="nrs_now_7" value="6–7"><label for="nrs_now_7">6–7<br><small>심함</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="nrs_now_9" value="8–10"><label for="nrs_now_9">8–10<br><small>극심</small></label></div>
+            </div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">최악일 때 통증 강도</label>
+          <div class="pain-scale-wrap">
+            <div class="pain-scale">
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="nrs_w0" value="0"><label for="nrs_w0">0</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="nrs_w2" value="1–2"><label for="nrs_w2">1–2</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="nrs_w5" value="3–5"><label for="nrs_w5">3–5</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="nrs_w7" value="6–7"><label for="nrs_w7">6–7</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="nrs_w9" value="8–10"><label for="nrs_w9">8–10</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">통증 악화 요인 <span class="hint">해당하는 것 모두</span></label>
+          <div class="check-group">
+            <div class="check-btn"><input type="checkbox" id="agg1" name="aggravating" value="걷기"><label for="agg1">걷기</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg2" name="aggravating" value="계단 오르내리기"><label for="agg2">계단</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg3" name="aggravating" value="앉아 있기"><label for="agg3">앉아 있기</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg4" name="aggravating" value="오래 서 있기"><label for="agg4">오래 서 있기</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg5" name="aggravating" value="양반다리(좌식)"><label for="agg5">양반다리</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg6" name="aggravating" value="운동/스포츠"><label for="agg6">운동/스포츠</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg7" name="aggravating" value="수면 중/누워있기"><label for="agg7">수면 중</label></div>
+            <div class="check-btn"><input type="checkbox" id="agg8" name="aggravating" value="차에서 타고 내릴 때"><label for="agg8">승하차</label></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">통증 완화 요인 <span class="hint">해당하는 것 모두</span></label>
+          <div class="check-group">
+            <div class="check-btn"><input type="checkbox" id="rel1" name="relieving" value="휴식"><label for="rel1">휴식</label></div>
+            <div class="check-btn"><input type="checkbox" id="rel2" name="relieving" value="진통제 복용"><label for="rel2">진통제</label></div>
+            <div class="check-btn"><input type="checkbox" id="rel3" name="relieving" value="온찜질"><label for="rel3">온찜질</label></div>
+            <div class="check-btn"><input type="checkbox" id="rel4" name="relieving" value="냉찜질"><label for="rel4">냉찜질</label></div>
+            <div class="check-btn"><input type="checkbox" id="rel5" name="relieving" value="스트레칭"><label for="rel5">스트레칭</label></div>
+            <div class="check-btn"><input type="checkbox" id="rel6" name="relieving" value="없음(완화 안 됨)"><label for="rel6">없음</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 기능 및 활동 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="icon">🏃</span>
+        <h2>기능 및 활동도</h2>
+        <span class="badge">Section 4</span>
+      </div>
+      <div class="section-body">
+        <div class="field-group">
+          <label class="field-label">현재 보행 상태</label>
+          <div class="radio-group vertical">
+            <div class="radio-btn"><input type="radio" name="gait" id="gait1" value="정상 보행 가능"><label for="gait1">✅ 정상 보행 가능</label></div>
+            <div class="radio-btn"><input type="radio" name="gait" id="gait2" value="통증은 있으나 보행 가능"><label for="gait2">⚠️ 통증은 있으나 보행 가능</label></div>
+            <div class="radio-btn"><input type="radio" name="gait" id="gait3" value="보행 보조기구 사용 (지팡이/목발)"><label for="gait3">🦯 보조기구 사용 (지팡이/목발)</label></div>
+            <div class="radio-btn"><input type="radio" name="gait" id="gait4" value="보행 매우 제한됨"><label for="gait4">❌ 보행 매우 제한됨</label></div>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field-group">
+          <label class="field-label">운동/스포츠 활동</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="sport" id="sp1" value="안 함"><label for="sp1">안 함</label></div>
+            <div class="radio-btn"><input type="radio" name="sport" id="sp2" value="가끔 (주 1회 미만)"><label for="sp2">가끔</label></div>
+            <div class="radio-btn"><input type="radio" name="sport" id="sp3" value="주 1–2회"><label for="sp3">주 1–2회</label></div>
+            <div class="radio-btn"><input type="radio" name="sport" id="sp4" value="주 3회 이상"><label for="sp4">주 3회↑</label></div>
+            <div class="radio-btn"><input type="radio" name="sport" id="sp5" value="전문/직업적 운동선수"><label for="sp5">전문 선수</label></div>
+          </div>
+        </div>
+        <div class="field-group" id="sport_type_field" style="display:none">
+          <label class="field-label">주로 하시는 운동</label>
+          <input type="text" id="sport_type" placeholder="예: 골프, 달리기, 축구, 발레 등">
+        </div>
+        <hr class="divider">
+        <div class="field-group">
+          <label class="field-label">증상으로 인해 포기하거나 줄인 활동이 있나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="activity_loss" id="al_no" value="없음"><label for="al_no">없음</label></div>
+            <div class="radio-btn"><input type="radio" name="activity_loss" id="al_yes" value="있음"><label for="al_yes">있음</label></div>
+          </div>
+          <div class="conditional-section" id="activity_loss_detail">
+            <div style="margin-top:8px">
+              <input type="text" id="activity_loss_text" placeholder="어떤 활동을 포기/줄이셨나요?">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 과거력 & 치료력 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="icon">📋</span>
+        <h2>과거력 &amp; 치료력</h2>
+        <span class="badge">Section 5</span>
+      </div>
+      <div class="section-body">
+        <div class="field-group">
+          <label class="field-label">이 부위에 이전에 치료 받으신 적 있나요?</label>
+          <div class="check-group">
+            <div class="check-btn"><input type="checkbox" id="prev1" name="prev_tx" value="없음"><label for="prev1">없음</label></div>
+            <div class="check-btn"><input type="checkbox" id="prev2" name="prev_tx" value="물리치료"><label for="prev2">물리치료</label></div>
+            <div class="check-btn"><input type="checkbox" id="prev3" name="prev_tx" value="주사치료"><label for="prev3">주사치료</label></div>
+            <div class="check-btn"><input type="checkbox" id="prev4" name="prev_tx" value="수술 (이전)"><label for="prev4">이전 수술</label></div>
+            <div class="check-btn"><input type="checkbox" id="prev5" name="prev_tx" value="한방치료"><label for="prev5">한방치료</label></div>
+            <div class="check-btn"><input type="checkbox" id="prev6" name="prev_tx" value="진통제 복용"><label for="prev6">진통제 복용</label></div>
+          </div>
+        </div>
+        <div class="field-group" id="prev_surg_detail_wrap" style="display:none">
+          <label class="field-label">이전 수술 내용</label>
+          <input type="text" id="prev_surg_detail" placeholder="예: 고관절 내시경 2021년">
+        </div>
+        <hr class="divider">
+        <div class="field-group">
+          <label class="field-label">관련 과거 진단명이 있으신가요?</label>
+          <div class="check-group">
+            <div class="check-btn"><input type="checkbox" id="dx1" name="prev_dx" value="없음/모름"><label for="dx1">없음/모름</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx2" name="prev_dx" value="고관절 충돌증후군(FAI)"><label for="dx2">FAI</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx3" name="prev_dx" value="고관절 이형성증"><label for="dx3">이형성증</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx4" name="prev_dx" value="골관절염"><label for="dx4">골관절염</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx5" name="prev_dx" value="대퇴골두 무혈성 괴사(AVN)"><label for="dx5">대퇴골두 괴사</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx6" name="prev_dx" value="근육/건 손상"><label for="dx6">근육/건 손상</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx7" name="prev_dx" value="척추 질환"><label for="dx7">척추 질환</label></div>
+            <div class="check-btn"><input type="checkbox" id="dx8" name="prev_dx" value="류마티스/자가면역"><label for="dx8">류마티스</label></div>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field-group">
+          <label class="field-label">복용 중인 약이 있으신가요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="meds" id="med_no" value="없음"><label for="med_no">없음</label></div>
+            <div class="radio-btn"><input type="radio" name="meds" id="med_yes" value="있음"><label for="med_yes">있음</label></div>
+          </div>
+          <div class="conditional-section" id="meds_detail">
+            <div style="margin-top:8px">
+              <input type="text" id="meds_text" placeholder="약물명을 입력해 주세요">
+            </div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">전신 질환 (해당 시)</label>
+          <div class="check-group">
+            <div class="check-btn"><input type="checkbox" id="sys1" name="systemic" value="당뇨"><label for="sys1">당뇨</label></div>
+            <div class="check-btn"><input type="checkbox" id="sys2" name="systemic" value="고혈압"><label for="sys2">고혈압</label></div>
+            <div class="check-btn"><input type="checkbox" id="sys3" name="systemic" value="골다공증"><label for="sys3">골다공증</label></div>
+            <div class="check-btn"><input type="checkbox" id="sys4" name="systemic" value="스테로이드 장기 복용력"><label for="sys4">스테로이드 복용력</label></div>
+            <div class="check-btn"><input type="checkbox" id="sys5" name="systemic" value="암 과거력"><label for="sys5">암 과거력</label></div>
+            <div class="check-btn"><input type="checkbox" id="sys_none" name="systemic" value="없음"><label for="sys_none">없음</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 수술 전 특이 섹션 (스포츠/수술예정 환자) -->
+    <div class="section-card">
+      <div class="section-header" style="background: var(--teal);">
+        <span class="icon">⚽</span>
+        <h2>스포츠 &amp; 수술 관련 (해당 시)</h2>
+        <span class="badge">Section 6</span>
+      </div>
+      <div class="section-body">
+        <div class="info-box">이 섹션은 운동을 즐기시거나 수술을 앞두신 분들을 위한 추가 질문입니다. 해당이 없으시면 건너뛰셔도 됩니다.</div>
+
+        <div class="field-group">
+          <label class="field-label">수술을 고려 또는 예정 중이신가요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="surg_plan" id="sp_no" value="아니오"><label for="sp_no">아니오</label></div>
+            <div class="radio-btn"><input type="radio" name="surg_plan" id="sp_considering" value="고려 중"><label for="sp_considering">고려 중</label></div>
+            <div class="radio-btn"><input type="radio" name="surg_plan" id="sp_yes" value="예정됨"><label for="sp_yes">예정됨</label></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">수술 후 복귀 목표</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="rts_goal" id="rts1" value="일상생활 복귀"><label for="rts1">일상생활</label></div>
+            <div class="radio-btn"><input type="radio" name="rts_goal" id="rts2" value="취미 운동 복귀"><label for="rts2">취미 운동</label></div>
+            <div class="radio-btn"><input type="radio" name="rts_goal" id="rts3" value="이전 수준 운동 복귀"><label for="rts3">이전 수준 운동</label></div>
+            <div class="radio-btn"><input type="radio" name="rts_goal" id="rts4" value="전문/직업 스포츠 복귀"><label for="rts4">전문 선수 복귀</label></div>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field-group">
+          <label class="field-label">다음 중 해당하는 것이 있나요? <span class="hint">DGS 스크리닝</span></label>
+          <div class="check-group vertical">
+            <div class="check-btn"><input type="checkbox" id="dgs1" name="dgs" value="엉덩이 깊은 곳 통증이 주증상"><label for="dgs1">🔴 엉덩이 깊은 곳 통증이 주증상</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs2" name="dgs" value="오래 앉으면 악화 (30분↑)"><label for="dgs2">🔴 오래 앉으면 악화 (30분 이상)</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs3" name="dgs" value="다리 저림/전기 오는 느낌 (좌골신경통 유사)"><label for="dgs3">🟡 다리 저림 / 전기 오는 느낌 (좌골신경통 유사)</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs4" name="dgs" value="발레/요가/스트레칭 중 악화"><label for="dgs4">🟡 발레/요가/스트레칭 중 악화</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs5" name="dgs" value="척추 검사는 정상이었음"><label for="dgs5">🟡 척추 검사 정상이었음</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs_none" name="dgs" value="해당없음"><label for="dgs_none">해당 없음</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 추가 메모 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="icon">📝</span>
+        <h2>하고 싶은 말씀</h2>
+        <span class="badge">Section 7</span>
+      </div>
+      <div class="section-body">
+        <div class="field-group">
+          <label class="field-label">의사 선생님께 특별히 전하고 싶은 내용이 있으시면 자유롭게 적어주세요.</label>
+          <textarea id="extra_note" placeholder="이전 진단에 의문이 있거나, 특별히 걱정되는 점, 원하시는 치료 목표 등..."></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label">최근 영상 검사를 받으셨나요? (X-ray, MRI 등)</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="imaging" id="img_no" value="없음"><label for="img_no">없음</label></div>
+            <div class="radio-btn"><input type="radio" name="imaging" id="img_xr" value="X-ray 있음"><label for="img_xr">X-ray</label></div>
+            <div class="radio-btn"><input type="radio" name="imaging" id="img_mri" value="MRI 있음"><label for="img_mri">MRI</label></div>
+            <div class="radio-btn"><input type="radio" name="imaging" id="img_both" value="X-ray + MRI 있음"><label for="img_both">X-ray + MRI</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrap section-card">
+      <div class="section-body">
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px; text-align:center;">
+          작성하신 내용은 진료에만 사용됩니다.<br>빨간 별표(*)는 필수 항목입니다.
+        </p>
+        <button class="btn-submit" onclick="submitForm()">📨 문진 제출하기</button>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</div><!-- /form-page -->
+
+
+<!-- ===== RESULT PAGE ===== -->
+<div id="result-page" class="result-page">
+  <div class="result-hero">
+    <div class="check-icon">✅</div>
+    <h2>문진 완료!</h2>
+    <p id="result-patient-name">아래 버튼으로 EMR에 바로 복사하세요</p>
+  </div>
+
+  <div class="copy-section">
+    <h3>📋 EMR 복사 형식 선택</h3>
+    <div class="copy-tabs">
+      <button class="copy-tab active" onclick="switchTab(&#39;structured&#39;)">🗂 구조화</button>
+      <button class="copy-tab" onclick="switchTab(&#39;soap&#39;)">🩺 SOAP</button>
+      <button class="copy-tab" onclick="switchTab(&#39;simple&#39;)">📝 단순 나열</button>
+    </div>
+    <div class="copy-preview" id="copy-preview"></div>
+    <button class="btn-copy" id="copy-btn" onclick="copyToClipboard()">
+      <span>📋</span> <span id="copy-btn-text">클립보드에 복사</span>
+    </button>
+  </div>
+
+  <button class="btn-restart" onclick="restartForm()">↩ 새 환자 문진 시작</button>
+</div>
+
+
+<script>
+// ===== PROGRESS =====
+function updateProgress() {
+  const required = ['pt_name', 'pt_dob'];
+  const radioRequired = ['sex', 'side', 'nrs_now'];
+  let filled = 0, total = required.length + radioRequired.length;
+  required.forEach(id => { if (document.getElementById(id)?.value.trim()) filled++; });
+  radioRequired.forEach(name => { if (document.querySelector(`input[name="${name}"]:checked`)) filled++; });
+  const pct = Math.round((filled / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = pct + '% 완료';
+}
+document.querySelectorAll('input, select, textarea').forEach(el => {
+  el.addEventListener('change', updateProgress);
+  el.addEventListener('input', updateProgress);
+});
+
+// ===== CONDITIONAL VISIBILITY =====
+document.querySelectorAll('input[name="activity_loss"]').forEach(el => {
+  el.addEventListener('change', () => {
+    document.getElementById('activity_loss_detail').classList.toggle('visible', el.value === '있음' && el.checked);
+  });
+});
+document.querySelectorAll('input[name="meds"]').forEach(el => {
+  el.addEventListener('change', () => {
+    document.getElementById('meds_detail').classList.toggle('visible', el.value === '있음' && el.checked);
+  });
+});
+document.querySelectorAll('input[name="sport"]').forEach(el => {
+  el.addEventListener('change', () => {
+    const show = ['주 1–2회','주 3회 이상','전문/직업적 운동선수','가끔 (주 1회 미만)'].includes(el.value);
+    document.getElementById('sport_type_field').style.display = show && el.checked ? '' : 'none';
+  });
+});
+document.getElementById('prev4')?.addEventListener('change', function() {
+  document.getElementById('prev_surg_detail_wrap').style.display = this.checked ? '' : 'none';
+});
+
+// ===== DATA COLLECTION =====
+function getVal(id) { return document.getElementById(id)?.value.trim() || ''; }
+function getRadio(name) { return document.querySelector(`input[name="${name}"]:checked`)?.value || ''; }
+function getChecks(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(e => e.value).join(', ') || '없음';
+}
+
+function collectData() {
+  // BMI
+  const h = parseFloat(getVal('pt_height')), w = parseFloat(getVal('pt_weight'));
+  const bmi = (h && w) ? (w / ((h/100)**2)).toFixed(1) : '';
+
+  // DOB → age
+  let age = '';
+  const dob = getVal('pt_dob');
+  if (dob) {
+    const today = new Date(), d = new Date(dob);
+    age = today.getFullYear() - d.getFullYear();
+    if (today < new Date(today.getFullYear(), d.getMonth(), d.getDate())) age--;
+  }
+
+  const visitDate = new Date().toLocaleDateString('ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'});
+
+  return {
+    visitDate, age,
+    name: getVal('pt_name'),
+    dob: dob ? dob.replace(/-/g,'.') : '',
+    sex: getRadio('sex'),
+    tel: getVal('pt_tel'),
+    height: getVal('pt_height'),
+    weight: getVal('pt_weight'),
+    bmi,
+    job: getVal('pt_job'),
+    side: getRadio('side'),
+    location: getChecks('location'),
+    onset: getRadio('onset'),
+    cause: getRadio('cause'),
+    char: getChecks('char'),
+    nrs_now: getRadio('nrs_now'),
+    nrs_worst: getRadio('nrs_worst'),
+    aggravating: getChecks('aggravating'),
+    relieving: getChecks('relieving'),
+    gait: getRadio('gait'),
+    sport: getRadio('sport'),
+    sport_type: getVal('sport_type'),
+    activity_loss: getRadio('activity_loss'),
+    activity_loss_text: getVal('activity_loss_text'),
+    prev_tx: getChecks('prev_tx'),
+    prev_surg: getVal('prev_surg_detail'),
+    prev_dx: getChecks('prev_dx'),
+    meds: getRadio('meds'),
+    meds_text: getVal('meds_text'),
+    systemic: getChecks('systemic'),
+    surg_plan: getRadio('surg_plan'),
+    rts_goal: getRadio('rts_goal'),
+    dgs: getChecks('dgs'),
+    imaging: getRadio('imaging'),
+    note: getVal('extra_note'),
+  };
+}
+
+// ===== FORMAT GENERATORS =====
+function formatStructured(d) {
+  let t = '';
+  t += `╔══ 고관절 초진 문진 — ${d.visitDate} ══\n`;
+  t += `║  이화 Hip & Performance Center\n`;
+  t += `╚════════════════════════════════\n\n`;
+  t += `【환자 정보】\n`;
+  t += `  성명: ${d.name}  |  생년월일: ${d.dob} (만 ${d.age}세)  |  성별: ${d.sex}\n`;
+  if (d.height || d.weight) t += `  신체: ${d.height}cm / ${d.weight}kg${d.bmi ? ' (BMI '+d.bmi+')' : ''}\n`;
+  if (d.job) t += `  직업: ${d.job}\n`;
+  t += '\n';
+  t += `【주 호소 (CC)】\n`;
+  t += `  이환 측: ${d.side}  |  발생 시기: ${d.onset}  |  유발 원인: ${d.cause}\n`;
+  t += `  통증 부위: ${d.location}\n`;
+  t += `  통증 양상: ${d.char}\n`;
+  t += '\n';
+  t += `【통증 강도 (NRS)】\n`;
+  t += `  현재: ${d.nrs_now}  |  최악: ${d.nrs_worst}\n`;
+  t += `  악화 요인: ${d.aggravating}\n`;
+  t += `  완화 요인: ${d.relieving}\n`;
+  t += '\n';
+  t += `【기능 & 활동】\n`;
+  t += `  보행 상태: ${d.gait}\n`;
+  t += `  운동 빈도: ${d.sport}${d.sport_type ? ' ('+d.sport_type+')' : ''}\n`;
+  if (d.activity_loss === '있음') t += `  포기한 활동: ${d.activity_loss_text}\n`;
+  t += '\n';
+  t += `【과거력 & 치료력】\n`;
+  t += `  이전 치료: ${d.prev_tx}${d.prev_surg ? ' — '+d.prev_surg : ''}\n`;
+  t += `  과거 진단: ${d.prev_dx}\n`;
+  t += `  복약: ${d.meds}${d.meds_text ? ' ('+d.meds_text+')' : ''}\n`;
+  t += `  전신 질환: ${d.systemic}\n`;
+  t += '\n';
+  if (d.surg_plan || d.dgs !== '해당없음') {
+    t += `【스포츠 & 수술 관련】\n`;
+    if (d.surg_plan) t += `  수술 계획: ${d.surg_plan}  |  RTS 목표: ${d.rts_goal}\n`;
+    if (d.dgs && d.dgs !== '해당없음') t += `  DGS 스크리닝: ${d.dgs}\n`;
+    t += '\n';
+  }
+  t += `【영상 검사】  ${d.imaging || '없음'}\n`;
+  if (d.note) t += `\n【환자 메모】\n  "${d.note}"\n`;
+  return t;
+}
+
+function formatSOAP(d) {
+  let t = '';
+  t += `고관절 초진 (${d.visitDate})\n`;
+  t += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+  t += `[S] Subjective\n`;
+  t += `  Pt: ${d.name}, ${d.age}세 ${d.sex}${d.job ? ', ' + d.job : ''}\n`;
+  t += `  CC: ${d.side} ${d.location} 통증 / ${d.onset} / ${d.cause}\n`;
+  t += `  통증 양상: ${d.char}\n`;
+  t += `  NRS ${d.nrs_now} (최악 ${d.nrs_worst})\n`;
+  t += `  악화: ${d.aggravating}\n`;
+  t += `  완화: ${d.relieving}\n`;
+  t += `  보행: ${d.gait}\n`;
+  t += `  스포츠: ${d.sport}${d.sport_type ? ' — '+d.sport_type : ''}\n`;
+  if (d.note) t += `  환자 진술: "${d.note}"\n`;
+  t += '\n';
+  t += `[O] Objective (이학적 검사 — 이후 기재)\n`;
+  t += `  ROM: \n`;
+  t += `  Special tests: \n`;
+  t += `  Imaging: ${d.imaging || '없음'}\n`;
+  t += '\n';
+  t += `[A] Assessment (진단 — 이후 기재)\n`;
+  t += `  Dx: \n`;
+  if (d.dgs && d.dgs !== '해당없음') t += `  DGS 스크리닝 양성 항목: ${d.dgs}\n`;
+  t += '\n';
+  t += `[P] Plan (치료 계획 — 이후 기재)\n`;
+  t += `  Tx: \n`;
+  if (d.surg_plan) t += `  수술 계획: ${d.surg_plan} / RTS 목표: ${d.rts_goal}\n`;
+  t += '\n';
+  t += `[PMHx]\n`;
+  t += `  이전 치료: ${d.prev_tx}${d.prev_surg ? ' — '+d.prev_surg : ''}\n`;
+  t += `  과거 진단: ${d.prev_dx}\n`;
+  t += `  복약: ${d.meds}${d.meds_text ? ' ('+d.meds_text+')' : ''}\n`;
+  t += `  전신 질환: ${d.systemic}\n`;
+  return t;
+}
+
+function formatSimple(d) {
+  const lines = [
+    `고관절 초진 문진 — ${d.visitDate}`,
+    `환자: ${d.name} / 생년월일: ${d.dob} / 만 ${d.age}세 ${d.sex}`,
+    d.height ? `키/체중: ${d.height}cm, ${d.weight}kg${d.bmi ? ' (BMI ' + d.bmi + ')' : ''}` : '',
+    d.job ? `직업: ${d.job}` : '',
+    `이환 측: ${d.side}`,
+    `통증 부위: ${d.location}`,
+    `발생 시기: ${d.onset} / 원인: ${d.cause}`,
+    `통증 양상: ${d.char}`,
+    `NRS(현재): ${d.nrs_now} / NRS(최악): ${d.nrs_worst}`,
+    `악화 요인: ${d.aggravating}`,
+    `완화 요인: ${d.relieving}`,
+    `보행: ${d.gait}`,
+    `운동: ${d.sport}${d.sport_type ? ' (' + d.sport_type + ')' : ''}`,
+    d.activity_loss === '있음' ? `포기한 활동: ${d.activity_loss_text}` : '',
+    `이전 치료: ${d.prev_tx}${d.prev_surg ? ' — ' + d.prev_surg : ''}`,
+    `과거 진단: ${d.prev_dx}`,
+    `복약: ${d.meds}${d.meds_text ? ' (' + d.meds_text + ')' : ''}`,
+    `전신 질환: ${d.systemic}`,
+    d.surg_plan ? `수술 계획: ${d.surg_plan} / RTS: ${d.rts_goal}` : '',
+    d.dgs && d.dgs !== '해당없음' ? `DGS 스크리닝: ${d.dgs}` : '',
+    `영상 검사: ${d.imaging || '없음'}`,
+    d.note ? `환자 메모: ${d.note}` : '',
+  ];
+  return lines.filter(Boolean).join('\n');
+}
+
+// ===== TABS =====
+let currentTab = 'structured';
+let currentData = null;
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.copy-tab').forEach((el, i) => {
+    el.classList.toggle('active', ['structured','soap','simple'][i] === tab);
+  });
+  renderPreview();
+}
+
+function renderPreview() {
+  if (!currentData) return;
+  let text = '';
+  if (currentTab === 'structured') text = formatStructured(currentData);
+  else if (currentTab === 'soap') text = formatSOAP(currentData);
+  else text = formatSimple(currentData);
+  document.getElementById('copy-preview').textContent = text;
+  document.getElementById('copy-btn-text').textContent = '클립보드에 복사';
+  document.getElementById('copy-btn').classList.remove('copied');
+}
+
+// ===== SUBMIT =====
+function submitForm() {
+  const name = document.getElementById('pt_name').value.trim();
+  const dob = document.getElementById('pt_dob').value;
+  const nrs = document.querySelector('input[name="nrs_now"]:checked');
+  const side = document.querySelector('input[name="side"]:checked');
+  if (!name) { alert('성함을 입력해 주세요.'); document.getElementById('pt_name').focus(); return; }
+  if (!dob) { alert('생년월일을 입력해 주세요.'); document.getElementById('pt_dob').focus(); return; }
+  if (!nrs) { alert('현재 통증 강도를 선택해 주세요.'); return; }
+  if (!side) { alert('이환 측(좌/우)을 선택해 주세요.'); return; }
+
+  currentData = collectData();
+  document.getElementById('form-page').style.display = 'none';
+  const rp = document.getElementById('result-page');
+  rp.classList.add('visible');
+  document.getElementById('result-patient-name').textContent =
+    `${currentData.name} 환자님 (${currentData.age}세 ${currentData.sex}) — 아래에서 복사하세요`;
+  renderPreview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== COPY =====
+async function copyToClipboard() {
+  const text = document.getElementById('copy-preview').textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch(e) {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+  }
+  const btn = document.getElementById('copy-btn');
+  btn.classList.add('copied');
+  document.getElementById('copy-btn-text').textContent = '✅ 복사 완료!';
+  setTimeout(() => {
+    btn.classList.remove('copied');
+    document.getElementById('copy-btn-text').textContent = '클립보드에 복사';
+  }, 2500);
+}
+
+// ===== RESTART =====
+function restartForm() {
+  document.getElementById('form-page').style.display = 'block';
+  document.getElementById('result-page').classList.remove('visible');
+  document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="tel"], textarea')
+    .forEach(el => el.value = '');
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
+  document.querySelectorAll('.conditional-section').forEach(el => el.classList.remove('visible'));
+  document.getElementById('sport_type_field').style.display = 'none';
+  document.getElementById('prev_surg_detail_wrap').style.display = 'none';
+  currentData = null; currentTab = 'structured';
+  updateProgress();
+  window.scrollTo({ top: 0 });
+}
+</script>
+
+
+</body></html>
