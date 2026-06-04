@@ -891,22 +891,10 @@ function submitForm(){
   currentData=collectData();
   currentData.emr_text=formatStructured(currentData);
 
-  // ===== ① Google Sheets 전송 (가장 먼저 실행 — 화면 처리보다 우선) =====
-  // 숨겨진 폼으로 POST 전송 (CORS 완전 우회)
   const d = currentData;
   const soapText = formatSOAP(d);
 
-  const iframe = document.createElement('iframe');
-  iframe.name = 'hidden_iframe';
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
-
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = SHEETS_URL;
-  form.target = 'hidden_iframe';
-  form.style.display = 'none';
-
+  // 전송할 데이터 (URL-encoded form body → Apps Script가 e.parameter로 받음)
   const fields = {
     action:'save',
     name:d.name||'', dob:d.dob||'', age:String(d.age||''), sex:d.sex||'', chart:d.chart||'',
@@ -929,27 +917,21 @@ function submitForm(){
     soap:soapText
   };
 
-  Object.entries(fields).forEach(([k,v]) => {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = k;
-    input.value = v;
-    form.appendChild(input);
-  });
+  const body = new URLSearchParams(fields).toString();
 
-  document.body.appendChild(form);
-  form.submit();
+  // ===== fetch POST 전송 — Apps Script doPost 호출 =====
+  // no-cors: 응답은 못 읽지만 POST 자체는 정상 전달됨 (GitHub Pages → Apps Script)
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: body
+  }).catch(()=>{ /* no-cors라 에러는 무시 */ });
 
-  // ===== ② 환자에게 완료 화면 표시 (전송 직후) =====
+  // ===== 환자에게 완료 화면 표시 =====
   document.getElementById('form-page').style.display='none';
   document.getElementById('result-page').classList.add('visible');
   window.scrollTo({top:0,behavior:'smooth'});
-
-  // 전송에 쓴 임시 폼/iframe 정리
-  setTimeout(() => {
-    if(form && form.parentNode) document.body.removeChild(form);
-    if(iframe && iframe.parentNode) document.body.removeChild(iframe);
-  }, 5000);
 }
 
 async function copyText(){
