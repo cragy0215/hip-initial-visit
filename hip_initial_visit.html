@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>고관절 초진 문진 — 이화 Hip & Performance Center</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+:root {
+  --navy:#1a3a5c; --navy-light:#2a5280; --teal:#1a7a6e; --teal-light:#e8f5f3;
+  --orange:#e8762c; --orange-light:#fff5ee; --purple:#6d3fa0; --purple-light:#f3eeff;
+  --red:#c0392b; --red-light:#fdf0ef; --cream:#f8f6f1; --cream2:#f0ede6;
+  --border:#ddd8cf; --text:#1c1c1c; --muted:#6b6560; --success:#27ae60;
+  --shadow:0 2px 12px rgba(26,58,92,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh;}
+
+/* HEADER */
+.header{background:var(--navy);color:white;padding:18px 20px 14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.header-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.header-icon{width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.header h1{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;}
+.header-sub{font-size:11px;color:rgba(255,255,255,0.7);}
+
+/* STEP INDICATOR */
+.step-indicator{display:flex;align-items:center;gap:0;margin-bottom:10px;}
+.step-dot{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
+.step-dot .dot{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);background:transparent;color:rgba(255,255,255,0.5);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
+.step-dot .label{font-size:9px;color:rgba(255,255,255,0.5);text-align:center;line-height:1.3;}
+.step-dot.active .dot{background:var(--orange);border-color:var(--orange);color:white;}
+.step-dot.active .label{color:white;}
+.step-dot.done .dot{background:var(--teal);border-color:var(--teal);color:white;}
+.step-dot.done .label{color:rgba(255,255,255,0.7);}
+.step-line{height:2px;flex:1;background:rgba(255,255,255,0.2);margin-bottom:16px;}
+.step-line.done{background:var(--teal);}
+
+.progress-bar-wrap{background:rgba(255,255,255,0.2);border-radius:4px;height:3px;overflow:hidden;}
+.progress-bar{background:var(--orange);height:100%;border-radius:4px;transition:width 0.4s ease;width:0%;}
+
+/* CONTAINER */
+.container{max-width:620px;margin:0 auto;padding:16px 16px 100px;}
+
+/* STEP PAGES */
+.step-page{display:none;}
+.step-page.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* CARDS */
+.section-card{background:white;border-radius:12px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden;}
+.section-header{background:var(--navy);color:white;padding:12px 18px;display:flex;align-items:center;gap:10px;}
+.section-header .icon{font-size:18px;}
+.section-header h2{font-size:14px;font-weight:600;}
+.section-header .badge{margin-left:auto;background:rgba(255,255,255,0.2);border-radius:20px;padding:2px 10px;font-size:11px;}
+.section-body{padding:16px 18px;}
+
+/* 부위별 배너 */
+.dx-banner{border-radius:12px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden;}
+.dx-banner-header{padding:11px 18px;display:flex;align-items:center;gap:10px;color:white;font-size:13px;font-weight:600;}
+.dx-banner-header .tag{margin-left:auto;background:rgba(255,255,255,0.25);border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;}
+.dx-groin .dx-banner-header{background:#1a7a6e;}
+.dx-deep .dx-banner-header{background:#6d3fa0;}
+.dx-lateral .dx-banner-header{background:#c07a1a;}
+.dx-posterior .dx-banner-header{background:#c0392b;}
+.dx-thigh .dx-banner-header{background:#1a5c8a;}
+.dx-back .dx-banner-header{background:#2e7d32;}
+.dx-banner .section-body{background:white;}
+
+/* FORM */
+.field-group{margin-bottom:16px;}
+.field-group:last-child{margin-bottom:0;}
+label.field-label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+label.field-label .req{color:var(--orange);margin-left:2px;}
+label.field-label .hint{font-weight:400;color:var(--muted);font-size:11px;margin-left:6px;}
+input[type="text"],input[type="number"],input[type="date"],select,textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;font-size:14px;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:white;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,122,110,0.12);}
+textarea{resize:vertical;min-height:72px;}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+.field-row{display:grid;gap:12px;}
+.field-row.col2{grid-template-columns:1fr 1fr;}
+.field-row.col3{grid-template-columns:1fr 1fr 1fr;}
+
+/* RADIO / CHECK */
+.radio-group,.check-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
+.radio-group.vertical,.check-group.vertical{flex-direction:column;gap:6px;}
+.radio-btn,.check-btn{position:relative;}
+.radio-btn input,.check-btn input{position:absolute;opacity:0;width:0;height:0;}
+.radio-btn label,.check-btn label{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all 0.15s;background:white;user-select:none;}
+.radio-btn label:before,.check-btn label:before{content:'';width:16px;height:16px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;transition:all 0.15s;}
+.check-btn label:before{border-radius:4px;}
+.radio-btn input:checked+label,.check-btn input:checked+label{border-color:var(--teal);background:var(--teal-light);color:var(--teal);font-weight:600;}
+.radio-btn input:checked+label:before,.check-btn input:checked+label:before{background:var(--teal);border-color:var(--teal);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-size:70%;background-repeat:no-repeat;background-position:center;}
+
+/* PAIN SCALE */
+.pain-scale{display:flex;gap:5px;}
+.pain-scale .ps-btn{position:relative;flex:1;}
+.pain-scale .ps-btn input{position:absolute;opacity:0;width:0;height:0;}
+.pain-scale .ps-btn label{display:flex;flex-direction:column;align-items:center;justify-content:center;height:44px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.15s;border:1.5px solid var(--border);background:white;color:var(--muted);gap:1px;}
+.pain-scale .ps-btn label small{font-size:9px;font-weight:400;}
+.pain-scale .ps-btn:nth-child(1) label{background:#ecfdf5;border-color:#a7f3d0;color:#059669;}
+.pain-scale .ps-btn:nth-child(2) label{background:#f0fdf4;border-color:#bbf7d0;color:#16a34a;}
+.pain-scale .ps-btn:nth-child(3) label{background:#fefce8;border-color:#fde68a;color:#d97706;}
+.pain-scale .ps-btn:nth-child(4) label{background:#fff7ed;border-color:#fed7aa;color:#ea580c;}
+.pain-scale .ps-btn:nth-child(5) label{background:#fef2f2;border-color:#fecaca;color:#dc2626;}
+.pain-scale .ps-btn input:checked+label{transform:scale(1.08);box-shadow:0 3px 8px rgba(0,0,0,0.15);z-index:2;position:relative;}
+
+/* LOCATION GRID */
+.location-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:4px;}
+.loc-btn{position:relative;}
+.loc-btn input{position:absolute;opacity:0;width:0;height:0;}
+.loc-btn label{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 6px;border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;text-align:center;transition:all 0.15s;background:white;min-height:60px;}
+.loc-btn label .emoji{font-size:20px;}
+.loc-btn input:checked+label{border-color:var(--orange);background:var(--orange-light);color:var(--orange);font-weight:600;}
+
+/* INFO BOX */
+.info-box{border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:10px 14px;font-size:12px;color:var(--teal);margin-bottom:14px;line-height:1.5;background:var(--teal-light);}
+.info-box.purple{background:var(--purple-light);border-color:var(--purple);color:var(--purple);}
+.info-box.orange{background:var(--orange-light);border-color:var(--orange);color:#a0540e;}
+.info-box.red{background:var(--red-light);border-color:var(--red);color:var(--red);}
+.info-box.green{background:#f1f8e9;border-color:#558b2f;color:#33691e;}
+.info-box.blue{background:#e3f2fd;border-color:#1565c0;color:#1565c0;}
+
+.divider{border:none;border-top:1px solid var(--cream2);margin:16px 0;}
+.conditional-section{display:none;}
+.conditional-section.visible{display:block;}
+
+/* NAV BUTTONS */
+.nav-wrap{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--cream2);padding:14px 16px;z-index:99;box-shadow:0 -2px 12px rgba(0,0,0,0.08);}
+.nav-inner{max-width:620px;margin:0 auto;display:flex;gap:10px;}
+.btn-prev{flex:1;background:white;color:var(--navy);border:1.5px solid var(--border);border-radius:12px;padding:14px;font-size:15px;font-weight:600;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.btn-next{flex:2;background:var(--navy);color:white;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.2s,transform 0.1s;}
+.btn-next:active{transform:scale(0.98);}
+.btn-next.teal{background:var(--teal);}
+
+/* STEP 2 EMPTY STATE */
+.no-location{text-align:center;padding:40px 20px;color:var(--muted);}
+.no-location .big{font-size:40px;margin-bottom:12px;}
+.no-location p{font-size:13px;}
+
+/* RESULT */
+.result-page{display:none;padding:20px 16px 80px;max-width:620px;margin:0 auto;}
+.result-page.visible{display:block;}
+.result-hero{background:var(--navy);color:white;border-radius:12px;padding:24px 20px;text-align:center;margin-bottom:20px;}
+.result-hero .check-icon{width:56px;height:56px;background:rgba(39,174,96,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px;}
+.result-hero h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:6px;}
+.result-hero p{font-size:13px;color:rgba(255,255,255,0.75);}
+.copy-tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.copy-tab{padding:8px 14px;border-radius:20px;border:1.5px solid var(--border);background:white;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+.copy-tab.active{background:var(--navy);border-color:var(--navy);color:white;}
+.copy-preview{background:#1c1c1c;border-radius:10px;padding:16px;font-family:monospace;font-size:12px;line-height:1.7;color:#e8e8e8;white-space:pre-wrap;max-height:400px;overflow-y:auto;}
+.btn-copy{width:100%;margin-top:10px;background:var(--teal);color:white;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-copy.copied{background:var(--success);}
+.btn-restart{width:100%;margin-top:12px;background:white;color:var(--navy);border:1.5px solid var(--border);border-radius:10px;padding:12px;font-size:14px;font-weight:600;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div id="form-page">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-icon">🦴</div>
+      <div><h1>고관절 초진 문진</h1><div class="header-sub">Ewha Hip &amp; Performance Center</div></div>
+    </div>
+    <!-- Step indicator -->
+    <div class="step-indicator">
+      <div class="step-dot active" id="sdot1"><div class="dot">1</div><div class="label">기본정보<br>통증부위</div></div>
+      <div class="step-line" id="sline1"></div>
+      <div class="step-dot" id="sdot2"><div class="dot">2</div><div class="label">부위별<br>세부질문</div></div>
+      <div class="step-line" id="sline2"></div>
+      <div class="step-dot" id="sdot3"><div class="dot">3</div><div class="label">통증강도<br>과거력</div></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:33%"></div></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ===== STEP 1 ===== -->
+    <div class="step-page active" id="step1">
+
+      <!-- 기본 정보 -->
+      <div class="section-card">
+        <div class="section-header"><span class="icon">👤</span><h2>기본 정보</h2><span class="badge">필수</span></div>
+        <div class="section-body">
+          <div class="field-row col2">
+            <div class="field-group"><label class="field-label">성함 <span class="req">*</span></label><input type="text" id="pt_name" placeholder="홍길동"></div>
+            <div class="field-group"><label class="field-label">생년월일 <span class="req">*</span></label><input type="date" id="pt_dob"></div>
+          </div>
+          <div class="field-row col2">
+            <div class="field-group">
+              <label class="field-label">성별</label>
+              <div class="radio-group">
+                <div class="radio-btn"><input type="radio" name="sex" id="sex_m" value="남"><label for="sex_m">남성</label></div>
+                <div class="radio-btn"><input type="radio" name="sex" id="sex_f" value="여"><label for="sex_f">여성</label></div>
+              </div>
+            </div>
+            <div class="field-group"><label class="field-label">병록번호</label><input type="text" id="pt_chart" placeholder="예: 2025-123456"></div>
+          </div>
+          <div class="field-row col3">
+            <div class="field-group"><label class="field-label">키 (cm)</label><input type="number" id="pt_height" placeholder="170"></div>
+            <div class="field-group"><label class="field-label">체중 (kg)</label><input type="number" id="pt_weight" placeholder="65"></div>
+            <div class="field-group">
+              <label class="field-label">직업</label>
+              <select id="pt_job">
+                <option value="">선택</option>
+                <option value="사무직">사무직</option>
+                <option value="현장직 (서서 일함)">현장직 (서서 일함)</option>
+                <option value="전문 운동선수">전문 운동선수</option>
+                <option value="주부">주부</option>
+                <option value="학생">학생</option>
+                <option value="대표/자영업">대표/자영업</option>
+                <option value="기타">기타</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 이환 측 & 통증 부위 -->
+      <div class="section-card">
+        <div class="section-header"><span class="icon">🎯</span><h2>통증 부위 선택</h2><span class="badge">필수</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label class="field-label">이환 측 <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="side" id="side_l" value="좌측"><label for="side_l">좌측 (Left)</label></div>
+              <div class="radio-btn"><input type="radio" name="side" id="side_r" value="우측"><label for="side_r">우측 (Right)</label></div>
+              <div class="radio-btn"><input type="radio" name="side" id="side_b" value="양측"><label for="side_b">양측</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">통증/불편함의 위치 <span class="req">*</span><span class="hint">여러 곳 선택 가능</span></label>
+            <div class="location-grid">
+              <div class="loc-btn"><input type="checkbox" id="loc_groin" name="location" value="서혜부(사타구니)"><label for="loc_groin"><span class="emoji">🟢</span>서혜부<br>(사타구니)</label></div>
+              <div class="loc-btn"><input type="checkbox" id="loc_lateral" name="location" value="고관절 외측"><label for="loc_lateral"><span class="emoji">🟡</span>고관절<br>외측</label></div>
+              <div class="loc-btn"><input type="checkbox" id="loc_posterior" name="location" value="엉덩이 후방"><label for="loc_posterior"><span class="emoji">🔴</span>엉덩이<br>(후방)</label></div>
+              <div class="loc-btn"><input type="checkbox" id="loc_deep" name="location" value="엉덩이 깊은 곳"><label for="loc_deep"><span class="emoji">🟣</span>엉덩이<br>깊은 곳</label></div>
+              <div class="loc-btn"><input type="checkbox" id="loc_thigh" name="location" value="허벅지(대퇴부)"><label for="loc_thigh"><span class="emoji">🔵</span>허벅지<br>(대퇴부)</label></div>
+              <div class="loc-btn"><input type="checkbox" id="loc_back" name="location" value="허리/천골부"><label for="loc_back"><span class="emoji">🟤</span>허리/<br>천골부</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">증상 시작 시기</label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="onset" id="on1" value="1개월 미만"><label for="on1">1개월 미만</label></div>
+              <div class="radio-btn"><input type="radio" name="onset" id="on2" value="1–3개월"><label for="on2">1–3개월</label></div>
+              <div class="radio-btn"><input type="radio" name="onset" id="on3" value="3–12개월"><label for="on3">3–12개월</label></div>
+              <div class="radio-btn"><input type="radio" name="onset" id="on4" value="1년 이상"><label for="on4">1년 이상</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">증상 발생 계기</label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="cause" id="ca1" value="외상/낙상"><label for="ca1">외상/낙상</label></div>
+              <div class="radio-btn"><input type="radio" name="cause" id="ca2" value="운동 중 부상"><label for="ca2">운동 중 부상</label></div>
+              <div class="radio-btn"><input type="radio" name="cause" id="ca3" value="서서히 발생"><label for="ca3">서서히 발생</label></div>
+              <div class="radio-btn"><input type="radio" name="cause" id="ca4" value="모름/원인불명"><label for="ca4">모름</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">증상의 성격 <span class="hint">해당하는 것 모두</span></label>
+            <div class="check-group">
+              <div class="check-btn"><input type="checkbox" id="ch1" name="char" value="둔한 통증"><label for="ch1">둔한 통증</label></div>
+              <div class="check-btn"><input type="checkbox" id="ch2" name="char" value="날카로운 통증"><label for="ch2">날카로운 통증</label></div>
+              <div class="check-btn"><input type="checkbox" id="ch3" name="char" value="타는 듯한 느낌"><label for="ch3">타는 듯한 느낌</label></div>
+              <div class="check-btn"><input type="checkbox" id="ch4" name="char" value="전기 오는 느낌(방사통)"><label for="ch4">전기 오는 느낌</label></div>
+              <div class="check-btn"><input type="checkbox" id="ch5" name="char" value="뻣뻣함(강직)"><label for="ch5">뻣뻣함</label></div>
+              <div class="check-btn"><input type="checkbox" id="ch6" name="char" value="소리 남(클릭/팝)"><label for="ch6">소리 남</label></div>
+              <div class="check-btn"><input type="checkbox" id="ch7" name="char" value="불안정한 느낌"><label for="ch7">불안정한 느낌</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /step1 -->
+
+    <!-- ===== STEP 2: 부위별 세부질문 ===== -->
+    <div class="step-page" id="step2">
+      <div id="step2-content">
+        <!-- 동적으로 생성됨 -->
+      </div>
+    </div>
+
+    <!-- ===== STEP 3 ===== -->
+    <div class="step-page" id="step3">
+
+      <!-- 통증 강도 -->
+      <div class="section-card">
+        <div class="section-header"><span class="icon">📊</span><h2>통증 강도 (NRS)</h2><span class="badge">필수</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label class="field-label">현재 통증 강도 <span class="req">*</span></label>
+            <div class="pain-scale">
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="n0" value="0"><label for="n0">0<small>없음</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="n2" value="1–2"><label for="n2">1–2<small>약함</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="n5" value="3–5"><label for="n5">3–5<small>중간</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="n7" value="6–7"><label for="n7">6–7<small>심함</small></label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_now" id="n9" value="8–10"><label for="n9">8–10<small>극심</small></label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">최악일 때 통증 강도</label>
+            <div class="pain-scale">
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="w0" value="0"><label for="w0">0</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="w2" value="1–2"><label for="w2">1–2</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="w5" value="3–5"><label for="w5">3–5</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="w7" value="6–7"><label for="w7">6–7</label></div>
+              <div class="ps-btn"><input type="radio" name="nrs_worst" id="w9" value="8–10"><label for="w9">8–10</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">악화 요인 <span class="hint">해당 모두</span></label>
+            <div class="check-group">
+              <div class="check-btn"><input type="checkbox" id="agg1" name="aggravating" value="걷기"><label for="agg1">걷기</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg2" name="aggravating" value="계단"><label for="agg2">계단</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg3" name="aggravating" value="앉아 있기"><label for="agg3">앉아 있기</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg4" name="aggravating" value="오래 서 있기"><label for="agg4">오래 서 있기</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg5" name="aggravating" value="양반다리"><label for="agg5">양반다리</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg6" name="aggravating" value="운동/스포츠"><label for="agg6">운동/스포츠</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg7" name="aggravating" value="수면 중"><label for="agg7">수면 중</label></div>
+              <div class="check-btn"><input type="checkbox" id="agg8" name="aggravating" value="승하차"><label for="agg8">승하차</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">완화 요인 <span class="hint">해당 모두</span></label>
+            <div class="check-group">
+              <div class="check-btn"><input type="checkbox" id="rel1" name="relieving" value="휴식"><label for="rel1">휴식</label></div>
+              <div class="check-btn"><input type="checkbox" id="rel2" name="relieving" value="진통제"><label for="rel2">진통제</label></div>
+              <div class="check-btn"><input type="checkbox" id="rel3" name="relieving" value="온찜질"><label for="rel3">온찜질</label></div>
+              <div class="check-btn"><input type="checkbox" id="rel4" name="relieving" value="냉찜질"><label for="rel4">냉찜질</label></div>
+              <div class="check-btn"><input type="checkbox" id="rel5" name="relieving" value="스트레칭"><label for="rel5">스트레칭</label></div>
+              <div class="check-btn"><input type="checkbox" id="rel6" name="relieving" value="없음"><label for="rel6">없음</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 기능 & 활동 -->
+      <div class="section-card">
+        <div class="section-header"><span class="icon">🏃</span><h2>기능 및 활동도</h2></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label class="field-label">현재 보행 상태</label>
+            <div class="radio-group vertical">
+              <div class="radio-btn"><input type="radio" name="gait" id="g1" value="정상 보행 가능"><label for="g1">✅ 정상 보행 가능</label></div>
+              <div class="radio-btn"><input type="radio" name="gait" id="g2" value="통증은 있으나 보행 가능"><label for="g2">⚠️ 통증은 있으나 보행 가능</label></div>
+              <div class="radio-btn"><input type="radio" name="gait" id="g3" value="보조기구 사용 (지팡이/목발)"><label for="g3">🦯 보조기구 사용</label></div>
+              <div class="radio-btn"><input type="radio" name="gait" id="g4" value="보행 매우 제한됨"><label for="g4">❌ 보행 매우 제한됨</label></div>
+            </div>
+          </div>
+          <hr class="divider">
+          <div class="field-group">
+            <label class="field-label">운동/스포츠 활동 빈도</label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="sport" id="sp1" value="안 함"><label for="sp1">안 함</label></div>
+              <div class="radio-btn"><input type="radio" name="sport" id="sp2" value="가끔 (주 1회 미만)"><label for="sp2">가끔</label></div>
+              <div class="radio-btn"><input type="radio" name="sport" id="sp3" value="주 1–2회"><label for="sp3">주 1–2회</label></div>
+              <div class="radio-btn"><input type="radio" name="sport" id="sp4" value="주 3회 이상"><label for="sp4">주 3회↑</label></div>
+              <div class="radio-btn"><input type="radio" name="sport" id="sp5" value="전문/직업 선수"><label for="sp5">전문 선수</label></div>
+            </div>
+          </div>
+          <div class="field-group" id="sport_type_wrap" style="display:none">
+            <label class="field-label">주로 하시는 운동 종목</label>
+            <input type="text" id="sport_type" placeholder="예: 골프, 달리기, 축구, 발레 등">
+          </div>
+          <hr class="divider">
+          <div class="field-group">
+            <label class="field-label">일상생활 중 가장 불편한 동작 하나를 꼽는다면?</label>
+            <input type="text" id="worst_activity" placeholder="예: 양반다리로 앉기, 계단 내려가기, 차 타고 내리기 등">
+          </div>
+          <hr class="divider">
+          <div class="field-group">
+            <label class="field-label">증상으로 포기하거나 줄인 활동이 있나요?</label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="act_loss" id="al_n" value="없음"><label for="al_n">없음</label></div>
+              <div class="radio-btn"><input type="radio" name="act_loss" id="al_y" value="있음"><label for="al_y">있음</label></div>
+            </div>
+            <div class="conditional-section" id="act_loss_detail">
+              <div style="margin-top:8px"><input type="text" id="act_loss_text" placeholder="어떤 활동을 포기/줄이셨나요?"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 과거력 -->
+      <div class="section-card">
+        <div class="section-header"><span class="icon">📋</span><h2>과거력 &amp; 치료력</h2></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label class="field-label">이전 치료 경험 <span class="hint">해당 모두</span></label>
+            <div class="check-group">
+              <div class="check-btn"><input type="checkbox" id="prev0" name="prev_tx" value="없음"><label for="prev0">없음</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev1" name="prev_tx" value="도수치료"><label for="prev1">도수치료</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev1b" name="prev_tx" value="운동치료"><label for="prev1b">운동치료</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev2" name="prev_tx" value="체외충격파(ESWT)"><label for="prev2">체외충격파 (ESWT)</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev3" name="prev_tx" value="스테로이드 주사"><label for="prev3">스테로이드 주사</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev4" name="prev_tx" value="프롤로 주사"><label for="prev4">프롤로 주사</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev5" name="prev_tx" value="PRP 주사"><label for="prev5">PRP 주사</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev6" name="prev_tx" value="이전 수술" onchange="document.getElementById('prev_surg_wrap').style.display=this.checked?'':'none'"><label for="prev6">이전 수술</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev7" name="prev_tx" value="한방치료"><label for="prev7">한방치료</label></div>
+              <div class="check-btn"><input type="checkbox" id="prev8" name="prev_tx" value="진통제 복용"><label for="prev8">진통제 복용</label></div>
+            </div>
+            <div id="prev_surg_wrap" style="display:none;margin-top:8px">
+              <input type="text" id="prev_surg" placeholder="수술 내용 (예: 고관절 내시경 2021년)">
+            </div>
+          </div>
+          <hr class="divider">
+          <div class="field-group">
+            <label class="field-label">과거 진단명 <span class="hint">해당 모두</span></label>
+            <div class="check-group">
+              <div class="check-btn"><input type="checkbox" id="dx1" name="prev_dx" value="없음/모름"><label for="dx1">없음/모름</label></div>
+              <div class="check-btn"><input type="checkbox" id="dx2" name="prev_dx" value="FAI(고관절 충돌)"><label for="dx2">FAI</label></div>
+              <div class="check-btn"><input type="checkbox" id="dx3" name="prev_dx" value="고관절 이형성증"><label for="dx3">이형성증</label></div>
+              <div class="check-btn"><input type="checkbox" id="dx4" name="prev_dx" value="골관절염"><label for="dx4">골관절염</label></div>
+              <div class="check-btn"><input type="checkbox" id="dx5" name="prev_dx" value="대퇴골두 무혈성 괴사"><label for="dx5">대퇴골두 괴사</label></div>
+              <div class="check-btn"><input type="checkbox" id="dx6" name="prev_dx" value="근육/건 손상"><label for="dx6">근육/건 손상</label></div>
+              <div class="check-btn"><input type="checkbox" id="dx7" name="prev_dx" value="척추 질환"><label for="dx7">척추 질환</label></div>
+            </div>
+          </div>
+          <hr class="divider">
+          <div class="field-row col2">
+            <div class="field-group">
+              <label class="field-label">현재 복약</label>
+              <div class="radio-group">
+                <div class="radio-btn"><input type="radio" name="meds" id="med_n" value="없음"><label for="med_n">없음</label></div>
+                <div class="radio-btn"><input type="radio" name="meds" id="med_y" value="있음"><label for="med_y">있음</label></div>
+              </div>
+              <div class="conditional-section" id="meds_detail">
+                <div style="margin-top:8px"><input type="text" id="meds_text" placeholder="약물명"></div>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">전신 질환 <span class="hint">해당 모두</span></label>
+              <div class="check-group vertical">
+                <div class="check-btn"><input type="checkbox" id="sys1" name="systemic" value="당뇨"><label for="sys1">당뇨</label></div>
+                <div class="check-btn"><input type="checkbox" id="sys2" name="systemic" value="고혈압"><label for="sys2">고혈압</label></div>
+                <div class="check-btn"><input type="checkbox" id="sys3" name="systemic" value="골다공증"><label for="sys3">골다공증</label></div>
+                <div class="check-btn"><input type="checkbox" id="sys4" name="systemic" value="스테로이드 복용력"><label for="sys4">스테로이드 복용력</label></div>
+                <div class="check-btn"><input type="checkbox" id="sys5" name="systemic" value="암 과거력"><label for="sys5">암 과거력</label></div>
+                <div class="check-btn"><input type="checkbox" id="sys_n" name="systemic" value="없음"><label for="sys_n">없음</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 추가 사항 -->
+      <div class="section-card">
+        <div class="section-header"><span class="icon">📝</span><h2>추가 사항</h2></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label class="field-label">최근 영상 검사</label>
+            <div class="radio-group">
+              <div class="radio-btn"><input type="radio" name="imaging" id="img_n" value="없음"><label for="img_n">없음</label></div>
+              <div class="radio-btn"><input type="radio" name="imaging" id="img_xr" value="X-ray 있음"><label for="img_xr">X-ray</label></div>
+              <div class="radio-btn"><input type="radio" name="imaging" id="img_mri" value="MRI 있음"><label for="img_mri">MRI</label></div>
+              <div class="radio-btn"><input type="radio" name="imaging" id="img_both" value="X-ray+MRI 있음"><label for="img_both">X-ray + MRI</label></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">선생님께 전하고 싶은 말씀</label>
+            <textarea id="extra_note" placeholder="걱정되시는 점, 치료 목표, 기타 증상 등 자유롭게 적어주세요."></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /step3 -->
+
+  </div><!-- /container -->
+
+  <!-- NAV BUTTONS -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <button class="btn-prev" id="btnPrev" onclick="prevStep()" style="display:none">← 이전</button>
+      <button class="btn-next" id="btnNext" onclick="nextStep()">다음 — 부위별 질문 →</button>
+    </div>
+  </div>
+</div><!-- /form-page -->
+
+<!-- RESULT PAGE (환자용) -->
+<div id="result-page" class="result-page">
+  <div style="min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;">
+    <div style="width:72px;height:72px;background:#e8f5f3;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:24px;">🙏</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#1a3a5c;margin-bottom:16px;line-height:1.4;">수고하셨습니다.</h2>
+    <p style="font-size:16px;color:#6b6560;line-height:1.8;">곧 성심껏 진료해 드리겠습니다.</p>
+    <p style="margin-top:32px;font-size:12px;color:#aaa;">Ewha Hip &amp; Performance Center</p>
+  </div>
+</div>
+
+<script>
+// ===== STEP MANAGEMENT =====
+let currentStep = 1;
+const totalSteps = 3;
+
+function updateStepUI() {
+  // pages
+  document.querySelectorAll('.step-page').forEach((p,i) => p.classList.toggle('active', i+1===currentStep));
+  // dots
+  [1,2,3].forEach(i => {
+    const dot = document.getElementById('sdot'+i);
+    dot.classList.remove('active','done');
+    if(i < currentStep) dot.classList.add('done');
+    if(i === currentStep) dot.classList.add('active');
+  });
+  [1,2].forEach(i => {
+    const line = document.getElementById('sline'+i);
+    line.classList.toggle('done', i < currentStep);
+  });
+  // progress bar
+  document.getElementById('progressBar').style.width = (currentStep/totalSteps*100)+'%';
+  // buttons
+  document.getElementById('btnPrev').style.display = currentStep > 1 ? '' : 'none';
+  const btnNext = document.getElementById('btnNext');
+  if(currentStep === 1) btnNext.textContent = '다음 — 부위별 질문 →';
+  else if(currentStep === 2) btnNext.textContent = '다음 — 통증 강도 입력 →';
+  else { btnNext.textContent = '📨 문진 제출하기'; btnNext.classList.add('teal'); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function buildStep2() {
+  const locations = [...document.querySelectorAll('input[name="location"]:checked')].map(e=>e.id);
+  const container = document.getElementById('step2-content');
+  container.innerHTML = '';
+
+  if(locations.length === 0) {
+    container.innerHTML = `<div class="no-location"><div class="big">🗺️</div><p>1단계에서 통증 부위를 선택하시면<br>해당 부위의 세부 질문이 여기에 나타납니다.</p></div>`;
+    return;
+  }
+
+  const sections = {
+    loc_groin: {
+      cls:'dx-groin', hdr:'🟢 서혜부 통증 — 추가 질문', tag:'FAI / 관절 내',
+      body:`
+        <div class="info-box">서혜부(사타구니) 통증은 고관절 충돌증후군(FAI), 관절와순 파열 등과 관련이 많습니다.</div>
+        <div class="field-group"><label class="field-label">서혜부 통증이 심해지는 동작 <span class="hint">해당 모두</span></label>
+          <div class="check-group vertical">
+            <div class="check-btn"><input type="checkbox" id="fai1" name="fai_aggr" value="앉다가 일어설 때"><label for="fai1">앉다가 일어설 때</label></div>
+            <div class="check-btn"><input type="checkbox" id="fai2" name="fai_aggr" value="차에서 타고 내릴 때"><label for="fai2">차에서 타고 내릴 때</label></div>
+            <div class="check-btn"><input type="checkbox" id="fai3" name="fai_aggr" value="쪼그려 앉기 / 스쿼트"><label for="fai3">쪼그려 앉기 / 스쿼트</label></div>
+            <div class="check-btn"><input type="checkbox" id="fai4" name="fai_aggr" value="달리기 / 방향 전환"><label for="fai4">달리기 / 방향 전환</label></div>
+            <div class="check-btn"><input type="checkbox" id="fai5" name="fai_aggr" value="양반다리(가부좌)"><label for="fai5">양반다리 (가부좌)</label></div>
+            <div class="check-btn"><input type="checkbox" id="fai6" name="fai_aggr" value="계단 오르기"><label for="fai6">계단 오르기</label></div>
+            <div class="check-btn"><input type="checkbox" id="fai7" name="fai_aggr" value="킥 동작 (축구, 무술 등)"><label for="fai7">킥 동작 (축구, 무술 등)</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">고관절에서 잠기는/걸리는 느낌(locking)이 있나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="fai_lock" id="fai_ly" value="예, 있음"><label for="fai_ly">예, 있음</label></div>
+            <div class="radio-btn"><input type="radio" name="fai_lock" id="fai_ln" value="없음"><label for="fai_ln">없음</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">과거에 FAI로 진단받으신 적 있나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="fai_hx" id="fai_hy" value="예, 진단받음"><label for="fai_hy">예</label></div>
+            <div class="radio-btn"><input type="radio" name="fai_hx" id="fai_hn" value="없음/모름"><label for="fai_hn">없음/모름</label></div>
+          </div>
+        </div>
+`
+    },
+    loc_deep: {
+      cls:'dx-deep', hdr:'🟣 엉덩이 깊은 곳 통증 — 추가 질문', tag:'DGS / 좌골신경',
+      body:`
+        <div class="info-box purple">엉덩이 깊은 곳 통증은 심부둔부증후군(DGS) 또는 좌골신경 압박과 관련될 수 있습니다.</div>
+        <div class="field-group"><label class="field-label">오래 앉아 있으면 통증이 심해지나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="dgs_sit" id="dgs_s1" value="예, 30분 이내부터 악화"><label for="dgs_s1">예, 30분 이내부터</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_sit" id="dgs_s2" value="예, 30분~1시간 후 악화"><label for="dgs_s2">30분~1시간 후</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_sit" id="dgs_s3" value="별로 관계없음"><label for="dgs_s3">별로 관계없음</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">다리 쪽으로 저림/전기 느낌이 뻗치나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="dgs_rad" id="dgs_r1" value="예, 종아리/발까지"><label for="dgs_r1">예, 종아리/발까지</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_rad" id="dgs_r2" value="예, 허벅지까지만"><label for="dgs_r2">허벅지까지만</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_rad" id="dgs_r3" value="없음"><label for="dgs_r3">없음</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">허리(척추) 검사에서 정상이라는 말을 들으신 적 있나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="dgs_spine" id="dgs_sp1" value="예, 척추는 정상"><label for="dgs_sp1">예, 척추 정상</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_spine" id="dgs_sp2" value="척추 문제도 있음"><label for="dgs_sp2">척추 문제도 있음</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_spine" id="dgs_sp3" value="검사 안 해봄"><label for="dgs_sp3">검사 안 해봄</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">통증이 심해지는 동작 <span class="hint">해당 모두</span></label>
+          <div class="check-group vertical">
+            <div class="check-btn"><input type="checkbox" id="dgs_mv1" name="dgs_move" value="고관절 내회전(발끝을 안쪽으로)"><label for="dgs_mv1">고관절 내회전 (발끝을 안쪽으로)</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs_mv2" name="dgs_move" value="스트레칭(비둘기 자세, 요가 등)"><label for="dgs_mv2">스트레칭 (비둘기 자세, 요가 등)</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs_mv3" name="dgs_move" value="계단 오르기 / 달리기"><label for="dgs_mv3">계단 오르기 / 달리기</label></div>
+            <div class="check-btn"><input type="checkbox" id="dgs_mv4" name="dgs_move" value="자전거 타기"><label for="dgs_mv4">자전거 타기</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">발레, 체조, 무용 등을 하시나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="dgs_dance" id="dgs_d1" value="예, 전문적으로"><label for="dgs_d1">전문적으로</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_dance" id="dgs_d2" value="예, 취미로"><label for="dgs_d2">취미로</label></div>
+            <div class="radio-btn"><input type="radio" name="dgs_dance" id="dgs_d3" value="아니오"><label for="dgs_d3">아니오</label></div>
+          </div>
+        </div>`
+    },
+    loc_lateral: {
+      cls:'dx-lateral', hdr:'🟡 고관절 외측 통증 — 추가 질문', tag:'GTrS / 대전자',
+      body:`
+        <div class="info-box orange">외측 통증은 대전자 통증증후군(GTrS), 중둔근 건병증, 대전자 점액낭염과 관련될 수 있습니다.</div>
+        <div class="field-group"><label class="field-label">외측 통증이 심해지는 상황 <span class="hint">해당 모두</span></label>
+          <div class="check-group vertical">
+            <div class="check-btn"><input type="checkbox" id="gtr1" name="gtr_aggr" value="옆으로 누울 때 (아픈 쪽으로)"><label for="gtr1">옆으로 누울 때 (아픈 쪽으로)</label></div>
+            <div class="check-btn"><input type="checkbox" id="gtr2" name="gtr_aggr" value="다리를 꼬고 앉을 때"><label for="gtr2">다리를 꼬고 앉을 때</label></div>
+            <div class="check-btn"><input type="checkbox" id="gtr3" name="gtr_aggr" value="오래 걷거나 달릴 때"><label for="gtr3">오래 걷거나 달릴 때</label></div>
+            <div class="check-btn"><input type="checkbox" id="gtr4" name="gtr_aggr" value="계단 오르내릴 때"><label for="gtr4">계단 오르내릴 때</label></div>
+            <div class="check-btn"><input type="checkbox" id="gtr5" name="gtr_aggr" value="골반 외측을 누르면 아픔(압통)"><label for="gtr5">골반 외측을 누르면 아픔 (압통)</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">외측에서 '탁' 하고 걸리는 느낌이나 소리가 나나요? (Snapping)</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="gtr_snap" id="gtr_sy" value="예, 있음"><label for="gtr_sy">예, 있음</label></div>
+            <div class="radio-btn"><input type="radio" name="gtr_snap" id="gtr_sn" value="없음"><label for="gtr_sn">없음</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">통증이 허리에서 시작해 외측으로 뻗치는 느낌인가요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="gtr_ref" id="gtr_ry" value="예, 허리에서 뻗침"><label for="gtr_ry">예, 허리에서 뻗침</label></div>
+            <div class="radio-btn"><input type="radio" name="gtr_ref" id="gtr_rn" value="아니오, 외측 자체가 아픔"><label for="gtr_rn">아니오, 외측 자체</label></div>
+          </div>
+        </div>`
+    },
+    loc_posterior: {
+      cls:'dx-posterior', hdr:'🔴 엉덩이 후방 통증 — 추가 질문', tag:'근위 햄스트링 / 좌골',
+      body:`
+        <div class="info-box red">후방 통증은 근위 햄스트링 건병증/파열, 좌골 점액낭염과 관련될 수 있습니다.</div>
+        <div class="field-group"><label class="field-label">통증이 가장 심한 위치는?</label>
+          <div class="radio-group vertical">
+            <div class="radio-btn"><input type="radio" name="ham_loc" id="ham_l1" value="좌골결절 (앉을 때 닿는 뼈 부위)"><label for="ham_l1">좌골결절 (앉을 때 닿는 뼈 부위)</label></div>
+            <div class="radio-btn"><input type="radio" name="ham_loc" id="ham_l2" value="엉덩이 중앙부"><label for="ham_l2">엉덩이 중앙부</label></div>
+            <div class="radio-btn"><input type="radio" name="ham_loc" id="ham_l3" value="허벅지 뒤쪽으로 뻗침"><label for="ham_l3">허벅지 뒤쪽으로 뻗침</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">통증이 심해지는 상황 <span class="hint">해당 모두</span></label>
+          <div class="check-group vertical">
+            <div class="check-btn"><input type="checkbox" id="ham1" name="ham_aggr" value="달리기 (특히 스프린트)"><label for="ham1">달리기 (특히 스프린트)</label></div>
+            <div class="check-btn"><input type="checkbox" id="ham2" name="ham_aggr" value="앉아 있기 (딱딱한 의자)"><label for="ham2">앉아 있기 (딱딱한 의자)</label></div>
+            <div class="check-btn"><input type="checkbox" id="ham3" name="ham_aggr" value="앞으로 구부리기 (forward flexion)"><label for="ham3">앞으로 구부리기</label></div>
+            <div class="check-btn"><input type="checkbox" id="ham4" name="ham_aggr" value="계단 오르기"><label for="ham4">계단 오르기</label></div>
+            <div class="check-btn"><input type="checkbox" id="ham5" name="ham_aggr" value="킥 동작 / 허들"><label for="ham5">킥 동작 / 허들</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">갑자기 '뚝' 하는 파열감이 있었나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="ham_tear" id="ham_ty" value="예, 갑작스러운 파열감 있었음"><label for="ham_ty">예, 파열감 있었음</label></div>
+            <div class="radio-btn"><input type="radio" name="ham_tear" id="ham_tn" value="아니오, 서서히 발생"><label for="ham_tn">아니오, 서서히</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">이전에 같은 부위 파열로 치료받으신 적 있나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="ham_prev" id="ham_py" value="예, 재손상"><label for="ham_py">예 (재손상)</label></div>
+            <div class="radio-btn"><input type="radio" name="ham_prev" id="ham_pn" value="없음, 처음"><label for="ham_pn">없음, 처음</label></div>
+          </div>
+        </div>`
+    },
+    loc_thigh: {
+      cls:'dx-thigh', hdr:'🔵 허벅지 통증 — 추가 질문', tag:'근육/건 · 방사통',
+      body:`
+        <div class="info-box blue">허벅지 통증은 근육 손상, 고관절에서의 방사통, 또는 신경 압박과 관련될 수 있습니다.</div>
+        <div class="field-group"><label class="field-label">허벅지 통증의 위치는?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="thigh_loc" id="th_l1" value="앞쪽(대퇴사두)"><label for="th_l1">앞쪽 (대퇴사두)</label></div>
+            <div class="radio-btn"><input type="radio" name="thigh_loc" id="th_l2" value="뒤쪽(햄스트링)"><label for="th_l2">뒤쪽 (햄스트링)</label></div>
+            <div class="radio-btn"><input type="radio" name="thigh_loc" id="th_l3" value="안쪽(내전근)"><label for="th_l3">안쪽 (내전근)</label></div>
+            <div class="radio-btn"><input type="radio" name="thigh_loc" id="th_l4" value="바깥쪽(장경인대)"><label for="th_l4">바깥쪽 (장경인대)</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">허벅지 통증이 고관절이나 허리에서 뻗쳐오는 느낌인가요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="thigh_ref" id="th_r1" value="예, 고관절에서 뻗쳐옴"><label for="th_r1">고관절에서 뻗쳐옴</label></div>
+            <div class="radio-btn"><input type="radio" name="thigh_ref" id="th_r2" value="예, 허리에서 뻗쳐옴"><label for="th_r2">허리에서 뻗쳐옴</label></div>
+            <div class="radio-btn"><input type="radio" name="thigh_ref" id="th_r3" value="아니오, 허벅지 자체가 아픔"><label for="th_r3">허벅지 자체</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">외상(타박, 직접 충격)이 있었나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="thigh_trauma" id="th_t1" value="예, 직접 충격/타박"><label for="th_t1">예, 충격/타박</label></div>
+            <div class="radio-btn"><input type="radio" name="thigh_trauma" id="th_t2" value="아니오"><label for="th_t2">아니오</label></div>
+          </div>
+        </div>`
+    },
+    loc_back: {
+      cls:'dx-back', hdr:'🟤 허리/천골부 통증 — 추가 질문', tag:'척추-고관절 감별',
+      body:`
+        <div class="info-box green">허리/천골부 통증이 고관절 문제와 함께 있는 경우가 많습니다. 감별을 위한 추가 질문입니다.</div>
+        <div class="field-group"><label class="field-label">허리 통증과 고관절 통증 중 어느 쪽이 더 주된 증상인가요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="back_main" id="bk_m1" value="허리가 주증상"><label for="bk_m1">허리가 주증상</label></div>
+            <div class="radio-btn"><input type="radio" name="back_main" id="bk_m2" value="고관절/엉덩이가 주증상"><label for="bk_m2">고관절/엉덩이가 주증상</label></div>
+            <div class="radio-btn"><input type="radio" name="back_main" id="bk_m3" value="비슷함"><label for="bk_m3">비슷함</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">허리를 앞뒤로 굽히면 통증이 변하나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="back_flex" id="bk_f1" value="앞으로 굽힐 때 악화"><label for="bk_f1">앞으로 굽힐 때 악화</label></div>
+            <div class="radio-btn"><input type="radio" name="back_flex" id="bk_f2" value="뒤로 젖힐 때 악화"><label for="bk_f2">뒤로 젖힐 때 악화</label></div>
+            <div class="radio-btn"><input type="radio" name="back_flex" id="bk_f3" value="관계없음"><label for="bk_f3">관계없음</label></div>
+          </div>
+        </div>
+        <div class="field-group"><label class="field-label">허리 MRI 또는 CT 검사를 받으신 적 있나요?</label>
+          <div class="radio-group">
+            <div class="radio-btn"><input type="radio" name="back_img" id="bk_i1" value="예, 디스크/협착 진단받음"><label for="bk_i1">예, 디스크/협착 진단</label></div>
+            <div class="radio-btn"><input type="radio" name="back_img" id="bk_i2" value="예, 정상이었음"><label for="bk_i2">예, 정상</label></div>
+            <div class="radio-btn"><input type="radio" name="back_img" id="bk_i3" value="검사 안 해봄"><label for="bk_i3">검사 안 해봄</label></div>
+          </div>
+        </div>`
+    }
+  };
+
+  locations.forEach(locId => {
+    const s = sections[locId];
+    if(!s) return;
+    const div = document.createElement('div');
+    div.className = 'dx-banner '+s.cls;
+    div.innerHTML = `<div class="dx-banner-header">${s.hdr}<span class="tag">${s.tag}</span></div><div class="section-body">${s.body}</div>`;
+    container.appendChild(div);
+  });
+}
+
+function nextStep() {
+  if(currentStep === 1) {
+    if(!document.getElementById('pt_name').value.trim()) { alert('성함을 입력해 주세요.'); return; }
+    if(!document.getElementById('pt_dob').value) { alert('생년월일을 입력해 주세요.'); return; }
+    if(!document.querySelector('input[name="side"]:checked')) { alert('이환 측을 선택해 주세요.'); return; }
+    if(!document.querySelector('input[name="location"]:checked')) { alert('통증 부위를 한 곳 이상 선택해 주세요.'); return; }
+    buildStep2();
+    currentStep = 2;
+  } else if(currentStep === 2) {
+    currentStep = 3;
+  } else if(currentStep === 3) {
+    if(!document.querySelector('input[name="nrs_now"]:checked')) { alert('현재 통증 강도를 선택해 주세요.'); return; }
+    submitForm();
+    return;
+  }
+  updateStepUI();
+}
+
+function prevStep() {
+  if(currentStep > 1) { currentStep--; updateStepUI(); }
+}
+
+// ===== CONDITIONALS =====
+document.querySelectorAll('input[name="act_loss"]').forEach(el =>
+  el.addEventListener('change', () => document.getElementById('act_loss_detail').classList.toggle('visible', el.value==='있음' && el.checked)));
+document.querySelectorAll('input[name="meds"]').forEach(el =>
+  el.addEventListener('change', () => document.getElementById('meds_detail').classList.toggle('visible', el.value==='있음' && el.checked)));
+document.querySelectorAll('input[name="sport"]').forEach(el =>
+  el.addEventListener('change', () => {
+    const show=['가끔 (주 1회 미만)','주 1–2회','주 3회 이상','전문/직업 선수'].includes(el.value);
+    document.getElementById('sport_type_wrap').style.display=(show&&el.checked)?'':'none';
+  }));
+
+// ===== DATA & FORMAT =====
+const gv=id=>document.getElementById(id)?.value.trim()||'';
+const gr=n=>document.querySelector('input[name="'+n+'"]:checked')?.value||'';
+const gc=n=>[...document.querySelectorAll('input[name="'+n+'"]:checked')].map(e=>e.value).join(', ')||'없음';
+
+function collectData() {
+  const h=parseFloat(gv('pt_height')),w=parseFloat(gv('pt_weight'));
+  const bmi=(h&&w)?(w/((h/100)**2)).toFixed(1):'';
+  const dob=gv('pt_dob');let age='';
+  if(dob){const t=new Date(),d=new Date(dob);age=t.getFullYear()-d.getFullYear();if(t<new Date(t.getFullYear(),d.getMonth(),d.getDate()))age--;}
+  const visitDate=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'});
+  const locs=[...document.querySelectorAll('input[name="location"]:checked')].map(e=>e.id);
+  const has=id=>locs.includes(id);
+  return {
+    visitDate,age,dob:dob.replace(/-/g,'.'),
+    name:gv('pt_name'),sex:gr('sex'),chart:gv('pt_chart'),
+    height:gv('pt_height'),weight:gv('pt_weight'),bmi,job:gv('pt_job'),
+    side:gr('side'),location:gc('location'),onset:gr('onset'),cause:gr('cause'),char:gc('char'),
+    nrs_now:gr('nrs_now'),nrs_worst:gr('nrs_worst'),aggravating:gc('aggravating'),relieving:gc('relieving'),
+    gait:gr('gait'),sport:gr('sport'),sport_type:gv('sport_type'),
+    worst_activity:gv('worst_activity'),act_loss:gr('act_loss'),act_loss_text:gv('act_loss_text'),
+    prev_tx:gc('prev_tx'),prev_surg:gv('prev_surg'),prev_dx:gc('prev_dx'),
+    meds:gr('meds'),meds_text:gv('meds_text'),systemic:gc('systemic'),
+    imaging:gr('imaging'),note:gv('extra_note'),
+    groin:has('loc_groin'),deep:has('loc_deep'),lat:has('loc_lateral'),post:has('loc_posterior'),thigh:has('loc_thigh'),back:has('loc_back'),
+    fai_aggr:has('loc_groin')?gc('fai_aggr'):'',fai_lock:has('loc_groin')?gr('fai_lock'):'',fai_hx:has('loc_groin')?gr('fai_hx'):'',
+    dgs_sit:has('loc_deep')?gr('dgs_sit'):'',dgs_rad:has('loc_deep')?gr('dgs_rad'):'',dgs_spine:has('loc_deep')?gr('dgs_spine'):'',dgs_move:has('loc_deep')?gc('dgs_move'):'',dgs_dance:has('loc_deep')?gr('dgs_dance'):'',
+    gtr_aggr:has('loc_lateral')?gc('gtr_aggr'):'',gtr_snap:has('loc_lateral')?gr('gtr_snap'):'',gtr_ref:has('loc_lateral')?gr('gtr_ref'):'',
+    ham_loc:has('loc_posterior')?gr('ham_loc'):'',ham_aggr:has('loc_posterior')?gc('ham_aggr'):'',ham_tear:has('loc_posterior')?gr('ham_tear'):'',ham_prev:has('loc_posterior')?gr('ham_prev'):'',
+    thigh_loc:has('loc_thigh')?gr('thigh_loc'):'',thigh_ref:has('loc_thigh')?gr('thigh_ref'):'',thigh_trauma:has('loc_thigh')?gr('thigh_trauma'):'',
+    back_main:has('loc_back')?gr('back_main'):'',back_flex:has('loc_back')?gr('back_flex'):'',back_img:has('loc_back')?gr('back_img'):'',
+  };
+}
+
+function dxLines(d) {
+  let t='';
+  if(d.groin){t+='\n  [🟢 서혜부 — FAI/관절 내]\n';t+=`    악화 동작: ${d.fai_aggr}\n`;if(d.fai_lock)t+=`    잠김: ${d.fai_lock}\n`;if(d.fai_hx)t+=`    FAI 기왕: ${d.fai_hx}\n`;}
+  if(d.deep){t+='\n  [🟣 엉덩이 깊은 곳 — DGS]\n';t+=`    좌위 악화: ${d.dgs_sit}\n    방사통: ${d.dgs_rad}\n    척추: ${d.dgs_spine}\n    악화 동작: ${d.dgs_move}\n`;if(d.dgs_dance)t+=`    무용/발레: ${d.dgs_dance}\n`;}
+  if(d.lat){t+='\n  [🟡 고관절 외측 — GTrS]\n';t+=`    악화 상황: ${d.gtr_aggr}\n    Snapping: ${d.gtr_snap}\n    허리 방사: ${d.gtr_ref}\n`;}
+  if(d.post){t+='\n  [🔴 엉덩이 후방 — 근위 햄스트링]\n';t+=`    통증 위치: ${d.ham_loc}\n    악화 동작: ${d.ham_aggr}\n    파열감: ${d.ham_tear}\n    재손상: ${d.ham_prev}\n`;}
+  if(d.thigh){t+='\n  [🔵 허벅지 — 근육/방사통]\n';t+=`    위치: ${d.thigh_loc}\n    방사: ${d.thigh_ref}\n    외상: ${d.thigh_trauma}\n`;}
+  if(d.back){t+='\n  [🟤 허리/천골부 — 척추-고관절 감별]\n';t+=`    주증상: ${d.back_main}\n    굴곡/신전: ${d.back_flex}\n    허리 영상: ${d.back_img}\n`;}
+  return t;
+}
+
+function formatStructured(d) {
+  let t=`╔══ 고관절 초진 문진 — ${d.visitDate} ══\n║  Ewha Hip & Performance Center\n╚${'═'.repeat(34)}\n\n`;
+  t+=`【환자 정보】\n  ${d.name} / ${d.dob} / 만 ${d.age}세 ${d.sex}`;
+  if(d.chart)t+=` / 병록번호: ${d.chart}`;
+  if(d.height)t+=`\n  신체: ${d.height}cm ${d.weight}kg${d.bmi?' (BMI '+d.bmi+')':''}`;
+  if(d.job)t+=` / 직업: ${d.job}`;
+  t+='\n\n【주 호소】\n';
+  t+=`  이환 측: ${d.side}  |  발생: ${d.onset}  |  원인: ${d.cause}\n`;
+  t+=`  통증 부위: ${d.location}\n  통증 양상: ${d.char}\n`;
+  const dx=dxLines(d);
+  if(dx)t+=`\n【부위별 세부 문진】${dx}`;
+  t+=`\n【통증 강도】\n  NRS 현재: ${d.nrs_now}  |  최악: ${d.nrs_worst}\n`;
+  t+=`  악화: ${d.aggravating}\n  완화: ${d.relieving}\n\n`;
+  t+=`【기능】\n  보행: ${d.gait}\n  운동: ${d.sport}${d.sport_type?' ('+d.sport_type+')':''}\n`;
+  if(d.worst_activity)t+=`  가장 불편한 동작: ${d.worst_activity}\n`;
+  if(d.act_loss==='있음')t+=`  포기 활동: ${d.act_loss_text}\n`;
+  t+=`\n【과거력】\n  치료: ${d.prev_tx}${d.prev_surg?' — '+d.prev_surg:''}\n`;
+  t+=`  진단: ${d.prev_dx}\n  복약: ${d.meds}${d.meds_text?' ('+d.meds_text+')':''}\n  전신: ${d.systemic}\n\n`;
+  t+=`【영상】  ${d.imaging||'없음'}\n`;
+  if(d.note)t+=`\n【환자 메모】\n  "${d.note}"\n`;
+  return t;
+}
+
+function formatSOAP(d) {
+  let t=`고관절 초진 (${d.visitDate})\n${'─'.repeat(40)}\n\n`;
+  t+=`[S]\n  Pt: ${d.name}, ${d.age}세 ${d.sex}${d.job?', '+d.job:''}${d.chart?' / 병록번호 '+d.chart:''}\n`;
+  t+=`  CC: ${d.side} ${d.location} 통증 / ${d.onset} / ${d.cause}\n`;
+  t+=`  양상: ${d.char}\n  NRS ${d.nrs_now} (최악 ${d.nrs_worst})\n`;
+  t+=`  악화: ${d.aggravating} / 완화: ${d.relieving}\n  보행: ${d.gait}\n`;
+  t+=`  운동: ${d.sport}${d.sport_type?' — '+d.sport_type:''}\n`;
+  if(d.worst_activity)t+=`  가장 불편한 동작: ${d.worst_activity}\n`;
+  const dx=dxLines(d);
+  if(dx)t+=`\n  [부위별 세부]${dx}`;
+  if(d.note)t+=`\n  Pt 진술: "${d.note}"\n`;
+  t+=`\n[O]\n  ROM: \n  Special tests: \n  Imaging: ${d.imaging||'없음'}\n`;
+  t+=`\n[A]\n  Dx: \n\n[P]\n  Tx: \n\n`;
+  t+=`[PMHx]\n  ${d.prev_tx}${d.prev_surg?' — '+d.prev_surg:''} / ${d.prev_dx}\n`;
+  t+=`  복약: ${d.meds}${d.meds_text?' ('+d.meds_text+')':''} / 전신: ${d.systemic}\n`;
+  return t;
+}
+
+function formatSimple(d) {
+  const lines=[
+    `고관절 초진 (${d.visitDate})`,
+    `${d.name} / ${d.dob} / 만${d.age}세 ${d.sex}${d.chart?' / 병록번호: '+d.chart:''}`,
+    d.height?`${d.height}cm ${d.weight}kg${d.bmi?' BMI '+d.bmi:''}`:null,
+    d.job?`직업: ${d.job}`:null,
+    `이환측: ${d.side} / 부위: ${d.location}`,
+    `발생: ${d.onset} / 원인: ${d.cause}`,
+    `양상: ${d.char}`,
+    `NRS(현재): ${d.nrs_now} / (최악): ${d.nrs_worst}`,
+    `악화: ${d.aggravating}`,
+    `완화: ${d.relieving}`,
+    `보행: ${d.gait}`,
+    `운동: ${d.sport}${d.sport_type?' ('+d.sport_type+')':''}`,
+    d.worst_activity?`가장 불편한 동작: ${d.worst_activity}`:null,
+    d.act_loss==='있음'?`포기활동: ${d.act_loss_text}`:null,
+    d.groin?`[서혜부/FAI] 악화: ${d.fai_aggr} / 잠김: ${d.fai_lock}`:null,
+    d.deep?`[DGS] 좌위: ${d.dgs_sit} / 방사: ${d.dgs_rad} / 척추: ${d.dgs_spine}`:null,
+    d.lat?`[외측GTrS] ${d.gtr_aggr} / snap: ${d.gtr_snap}`:null,
+    d.post?`[후방/햄스트링] 위치: ${d.ham_loc} / 파열감: ${d.ham_tear} / 재손상: ${d.ham_prev}`:null,
+    d.thigh?`[허벅지] ${d.thigh_loc} / 방사: ${d.thigh_ref}`:null,
+    d.back?`[허리/천골] 주증상: ${d.back_main} / 영상: ${d.back_img}`:null,
+    `치료력: ${d.prev_tx}${d.prev_surg?' — '+d.prev_surg:''}`,
+    `진단: ${d.prev_dx}`,
+    `복약: ${d.meds}${d.meds_text?' ('+d.meds_text+')':''}`,
+    `전신: ${d.systemic}`,
+    `영상: ${d.imaging||'없음'}`,
+    d.note?`메모: ${d.note}`:null,
+  ];
+  return lines.filter(Boolean).join('\n');
+}
+
+let currentTab='structured',currentData=null;
+function switchTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.copy-tab').forEach((el,i)=>el.classList.toggle('active',['structured','soap','simple'][i]===tab));
+  renderPreview();
+}
+function renderPreview(){
+  if(!currentData)return;
+  const text=currentTab==='structured'?formatStructured(currentData):currentTab==='soap'?formatSOAP(currentData):formatSimple(currentData);
+  document.getElementById('copy-preview').textContent=text;
+  document.getElementById('copy-label').textContent='클립보드에 복사';
+  document.getElementById('copy-btn').classList.remove('copied');
+}
+
+const SHEETS_URL='https://script.google.com/macros/s/AKfycby-SjW-5a4X6aQ1VjMUWEpcX5Rl-E0S7JpixP20Z9DaOt9wNnE3UDDhlcveiqm-gHHo/exec';
+
+function submitForm(){
+  currentData=collectData();
+  currentData.emr_text=formatStructured(currentData);
+
+  document.getElementById('form-page').style.display='none';
+  document.getElementById('result-page').classList.add('visible');
+  document.getElementById('result-name').textContent=`${currentData.name} 환자님 (${currentData.age}세 ${currentData.sex})${currentData.chart?' — 병록번호 '+currentData.chart:''}`;
+  renderPreview();
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  // Google Sheets 저장 (백그라운드)
+  const statusEl=document.getElementById('sheets-status');
+  if(statusEl)statusEl.textContent='⏳ Google Sheets 저장 중...';
+  // 숨겨진 폼으로 POST 전송 (CORS 완전 우회)
+  const d = currentData;
+  const soapText = formatSOAP(d);
+
+  const iframe = document.createElement('iframe');
+  iframe.name = 'hidden_iframe';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = SHEETS_URL;
+  form.target = 'hidden_iframe';
+  form.style.display = 'none';
+
+  const fields = {
+    action:'save',
+    name:d.name||'', dob:d.dob||'', age:String(d.age||''), sex:d.sex||'', chart:d.chart||'',
+    height:d.height||'', weight:d.weight||'', bmi:d.bmi||'', job:d.job||'',
+    side:d.side||'', location:d.location||'', onset:d.onset||'', cause:d.cause||'', char:d.char||'',
+    nrs_now:d.nrs_now||'', nrs_worst:d.nrs_worst||'',
+    aggravating:d.aggravating||'', relieving:d.relieving||'',
+    worst_activity:d.worst_activity||'', gait:d.gait||'',
+    sport:d.sport||'', sport_type:d.sport_type||'',
+    act_loss_text:d.act_loss_text||'', prev_tx:d.prev_tx||'', prev_surg:d.prev_surg||'',
+    prev_dx:d.prev_dx||'', meds_text:d.meds_text||'', systemic:d.systemic||'',
+    imaging:d.imaging||'', note:d.note||'',
+    fai_aggr:d.fai_aggr||'', fai_lock:d.fai_lock||'', fai_hx:d.fai_hx||'',
+    dgs_sit:d.dgs_sit||'', dgs_rad:d.dgs_rad||'', dgs_spine:d.dgs_spine||'',
+    dgs_move:d.dgs_move||'', dgs_dance:d.dgs_dance||'',
+    gtr_aggr:d.gtr_aggr||'', gtr_snap:d.gtr_snap||'', gtr_ref:d.gtr_ref||'',
+    ham_loc:d.ham_loc||'', ham_aggr:d.ham_aggr||'', ham_tear:d.ham_tear||'', ham_prev:d.ham_prev||'',
+    thigh_loc:d.thigh_loc||'', thigh_ref:d.thigh_ref||'', thigh_trauma:d.thigh_trauma||'',
+    back_main:d.back_main||'', back_flex:d.back_flex||'', back_img:d.back_img||'',
+    soap:soapText
+  };
+
+  Object.entries(fields).forEach(([k,v]) => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = k;
+    input.value = v;
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+
+  setTimeout(() => {
+    if(statusEl) statusEl.textContent = '✅ Google Sheets 저장 완료';
+    document.body.removeChild(form);
+    document.body.removeChild(iframe);
+  }, 2000);
+}
+
+async function copyText(){
+  const text=document.getElementById('copy-preview').textContent;
+  try{await navigator.clipboard.writeText(text);}
+  catch{const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
+  document.getElementById('copy-btn').classList.add('copied');
+  document.getElementById('copy-label').textContent='✅ 복사 완료!';
+  setTimeout(()=>{document.getElementById('copy-btn').classList.remove('copied');document.getElementById('copy-label').textContent='클립보드에 복사';},2500);
+}
+
+function restartForm(){
+  document.getElementById('form-page').style.display='block';
+  document.getElementById('result-page').classList.remove('visible');
+  document.querySelectorAll('input[type="text"],input[type="number"],input[type="date"],textarea').forEach(el=>el.value='');
+  document.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(el=>el.checked=false);
+  document.querySelectorAll('select').forEach(el=>el.selectedIndex=0);
+  document.getElementById('conditional-section')?.classList.remove('visible');
+  document.querySelectorAll('.conditional-section').forEach(el=>el.classList.remove('visible'));
+  document.getElementById('sport_type_wrap').style.display='none';
+  document.getElementById('prev_surg_wrap').style.display='none';
+  document.getElementById('step2-content').innerHTML='';
+  currentData=null;currentTab='structured';currentStep=1;
+  updateStepUI();
+}
+</script>
+</body>
+</html>
