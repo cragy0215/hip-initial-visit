@@ -891,15 +891,7 @@ function submitForm(){
   currentData=collectData();
   currentData.emr_text=formatStructured(currentData);
 
-  document.getElementById('form-page').style.display='none';
-  document.getElementById('result-page').classList.add('visible');
-  document.getElementById('result-name').textContent=`${currentData.name} 환자님 (${currentData.age}세 ${currentData.sex})${currentData.chart?' — 병록번호 '+currentData.chart:''}`;
-  renderPreview();
-  window.scrollTo({top:0,behavior:'smooth'});
-
-  // Google Sheets 저장 (백그라운드)
-  const statusEl=document.getElementById('sheets-status');
-  if(statusEl)statusEl.textContent='⏳ Google Sheets 저장 중...';
+  // ===== ① Google Sheets 전송 (가장 먼저 실행 — 화면 처리보다 우선) =====
   // 숨겨진 폼으로 POST 전송 (CORS 완전 우회)
   const d = currentData;
   const soapText = formatSOAP(d);
@@ -948,11 +940,16 @@ function submitForm(){
   document.body.appendChild(form);
   form.submit();
 
+  // ===== ② 환자에게 완료 화면 표시 (전송 직후) =====
+  document.getElementById('form-page').style.display='none';
+  document.getElementById('result-page').classList.add('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  // 전송에 쓴 임시 폼/iframe 정리
   setTimeout(() => {
-    if(statusEl) statusEl.textContent = '✅ Google Sheets 저장 완료';
-    document.body.removeChild(form);
-    document.body.removeChild(iframe);
-  }, 2000);
+    if(form && form.parentNode) document.body.removeChild(form);
+    if(iframe && iframe.parentNode) document.body.removeChild(iframe);
+  }, 5000);
 }
 
 async function copyText(){
